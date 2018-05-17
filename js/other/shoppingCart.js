@@ -8,6 +8,7 @@ var ShoppingCart = function (model, element){
   //console.log("empty cart: "+element)
 
   var shoppingCart = model.getShoppingCart();
+  console.log("inne i update, shoppongcart: "+ shoppingCart)
   var totalPrice = 0
 
   for (var i=0; i < shoppingCart.length; i++){
@@ -70,6 +71,6 @@ var ShoppingCart = function (model, element){
   // element.appendChild(item)
   // console.log("Elementet efter update: "+item)
 }
-this.update()
-model.addObserver(this)
+this.update();
+model.addObserver(this);
 }

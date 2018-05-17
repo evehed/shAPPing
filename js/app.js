@@ -12,6 +12,7 @@ var printCart = document.getElementById("shoppingCart")
 var loginElement = document.getElementById("login.html")
 var defaultElement = document.getElementById("default-page")
 var productInfoElement = document.getElementById("productInfo.html")
+var printproductInfo = document.getElementById("productInfo")
 
 function searchPage(){
 	searchElement.style.display = "block";
@@ -19,9 +20,10 @@ function searchPage(){
 	payElement.style.display = "none";
 	cartElement.style.display = "none";
 	productInfoElement.style.display = "none";
+	var pressInfo = new PressInfo(model, printproductInfo)
+
 }
 function scanPage(){
-	//var pressInfo = new PressInfo(model, productInfoElement)
 
 	var search = new Search(model, printSearch);
 	var shoppingCart = new ShoppingCart(model, printCart);
@@ -48,18 +50,17 @@ function cartPage(){
 	cartElement.style.display = "block";
 	productInfoElement.style.display = "none";
 }
-// function productInfoPage(g){
-// 	console.log("add vara: "+ g)
-// 	model.setCurrentProduct(g);
-//
-//
-// 	searchElement.style.display = "none";
-// 	scanElement.style.display = "none";
-// 	payElement.style.display = "none";
-// 	cartElement.style.display = "none";
-// 	productInfoElement.style.display = "block";
-//
-// }
+function productInfoPage(g){
+	console.log("add vara: "+ g)
+	model.setCurrentProduct(g);
+
+	searchElement.style.display = "none";
+	scanElement.style.display = "none";
+	payElement.style.display = "none";
+	cartElement.style.display = "none";
+	productInfoElement.style.display = "block";
+
+}
 scanPage();
 //
 // 	var searchElement = document.getElementById("search.html");

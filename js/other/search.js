@@ -32,9 +32,9 @@ console.log(element)
       var grocerienode = document.createElement("ons-card");
       grocerienode.setAttribute("id",g.id);
       grocerienode.setAttribute("value",g);
-      //grocerienode.setAttribute("onclick","productInfoPage("+g.id+")");
-      var groceriestitle = document.createElement("h2");
-      var groceriessection = document.createElement("h4");
+      grocerienode.setAttribute("onclick","productInfoPage("+g.id+")");
+      var groceriestitle = document.createElement("h4");
+      var groceriessection = document.createElement("h6");
       var textnodetitle = document.createTextNode(g.title);
       var textnodesection = document.createTextNode("Section: "+ g.section);
 

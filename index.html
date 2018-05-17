@@ -67,10 +67,8 @@
     </div>
 
     <!-- Search -->
-    <div id="search.html">
-      <p class="center">
-        Search product
-      </p>
+    <div id="search.html" class="col-12">
+      <p class="center"> Search product</p>
       <input class="form-control mr-sm-2" type="search" id="myInput" placeholder="Search" style="width: 99%; margin: auto; display: block;" onchange="model.setSearchFilter(this.value);"></input>
       <div id="search">
       </div>
@@ -81,7 +79,16 @@
         <p>pay</p>
     </div>
 
-    <div id="productInfo.html">
+    <div id="productInfo.html" class="col-12">
+      <br/>
+      <div class="row">
+        <i class="col-2 material-icons" onclick="searchPage()">arrow_back_ios</i>
+        <h6 class="col-8 center">Product info</h1>
+      </div>
+
+      <div id="productInfo">
+
+      </div>
     </div>
 
   <!-- Har gjort 2 för testning. Vi ska bara ha en scanProduct sen-->
