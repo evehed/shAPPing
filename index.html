@@ -17,79 +17,97 @@
   // Redirect console if running from Evothings Workbench.
   if (window.hyper) { console.log = hyper.log }
   </script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-database.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDFN8hxCYuOipmB-UWY0JsQPICV6jSqxHM",
+    authDomain: "shapping-41333.firebaseapp.com",
+    databaseURL: "https://shapping-41333.firebaseio.com",
+    projectId: "shapping-41333",
+    storageBucket: "shapping-41333.appspot.com",
+    messagingSenderId: "987966090005"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+</script>
 </head>
 <body style="overflow-y: scroll;">
 
-<!--Potential Log-in-->
+  <!--Potential Log-in-->
   <!--<div class="container" id="login.html">
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
-        <div class="checkbox">
-          <label>
-            <input value="remember-me" type="checkbox"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="defaultPage()">Sign in</button>
+  <form class="form-signin">
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+  <div class="checkbox">
+  <label>
+  <input value="remember-me" type="checkbox"> Remember me
+</label>
+</div>
+<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="defaultPage()">Sign in</button>
 
-      </form>
-      <button class="btn btn-lg btn-primary btn-block"  onclick="defaultPage()">go</button>
+</form>
+<button class="btn btn-lg btn-primary btn-block"  onclick="defaultPage()">go</button>
 
-  </div>-->
+</div>-->
 
-  <div id="page-default">
-    <!-- Navigator -->
-    <div class="navbar fixed-bottom navbar-light bg-light" >
-      <a class="nav-item nav-link" href="#" onclick="scanPage()"><i class="material-icons">speaker_phone</i></a>
-      <a class="nav-item nav-link" href="#" onclick="cartPage()"> <i class="material-icons">shopping_cart</i></a>
-      <a class="nav-item nav-link" href="#" onclick="searchPage()"><i class="material-icons">search</i></a>
-      <a class="nav-item nav-link" href="#" onclick="payPage()"><i class="material-icons">payment</i></a>
+
+<div id="page-default">
+  <!-- Navigator -->
+  <div class="navbar fixed-bottom navbar-light bg-light" >
+    <a class="nav-item nav-link" href="#" onclick="scanPage()"><i class="material-icons">speaker_phone</i></a>
+    <a class="nav-item nav-link" href="#" onclick="cartPage()"> <i class="material-icons">shopping_cart</i></a>
+    <a class="nav-item nav-link" href="#" onclick="searchPage()"><i class="material-icons">search</i></a>
+    <a class="nav-item nav-link" href="#" onclick="payPage()"><i class="material-icons">payment</i></a>
+  </div>
+</div>
+
+<!-- Scan product -->
+<div id="scanProduct.html">
+  <div id="scanProduct">
+    <p class="center">
+      Scan product
+    </p>
+  </div>
+</div>
+
+<!-- Shopping cart -->
+<div id="shoppingCart.html">
+  <div id="shoppingCart">
+    <p>Shopping chart</p>
+  </div>
+</div>
+
+<!-- Search -->
+<div id="search.html" class="col-12">
+  <p class="center"> Search product</p>
+  <input class="form-control mr-sm-2" type="search" id="myInput" placeholder="Search" style="width: 99%; margin: auto; display: block;" onchange="model.setSearchFilter(this.value);"></input>
+  <div id="search">
+  </div>
+</div>
+
+<!-- Checkout -->
+<div id="pay.html">
+  <p>pay</p>
+</div>
+
+<div id="productInfo.html" class="col-12">
+  <br/>
+  <div class="row">
+    <i class="col-2 material-icons" onclick="searchPage()">arrow_back_ios</i>
+    <h6 class="col-8 center">Product info</h1>
+    </div>
+
+    <div id="productInfo">
+
     </div>
   </div>
-
-    <!-- Scan product -->
-    <div id="scanProduct.html">
-      <div id="scanProduct">
-        <p class="center">
-          Scan product
-        </p>
-      </div>
-    </div>
-
-    <!-- Shopping cart -->
-    <div id="shoppingCart.html">
-      <div id="shoppingCart">
-          <p>Shopping chart</p>
-      </div>
-    </div>
-
-    <!-- Search -->
-    <div id="search.html" class="col-12">
-      <p class="center"> Search product</p>
-      <input class="form-control mr-sm-2" type="search" id="myInput" placeholder="Search" style="width: 99%; margin: auto; display: block;" onchange="model.setSearchFilter(this.value);"></input>
-      <div id="search">
-      </div>
-    </div>
-
-    <!-- Checkout -->
-    <div id="pay.html">
-        <p>pay</p>
-    </div>
-
-    <div id="productInfo.html" class="col-12">
-      <br/>
-      <div class="row">
-        <i class="col-2 material-icons" onclick="searchPage()">arrow_back_ios</i>
-        <h6 class="col-8 center">Product info</h1>
-      </div>
-
-      <div id="productInfo">
-
-      </div>
-    </div>
 
   <!-- Har gjort 2 för testning. Vi ska bara ha en scanProduct sen-->
   <div id="scanProduct1">
@@ -98,19 +116,19 @@
   <div id="scanProduct2">
     scanproduct2
   </div>
-    </div>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-  <script src="cordova.js"></script>
-  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
- <script src="js/model/shoppingModel.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="cordova.js"></script>
+<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+<script src="js/model/shoppingModel.js"></script>
 
-  <script src="js/other/search.js"></script>
-  <script src="js/other/shoppingCart.js"></script>
-  <script src="js/other/pay.js"></script>
-  <script src="js/other/pressInfo.js"></script>
-  <!--<script src="js/other/beaconApp.js"></script>-->
+<script src="js/other/search.js"></script>
+<script src="js/other/shoppingCart.js"></script>
+<script src="js/other/pay.js"></script>
+<script src="js/other/pressInfo.js"></script>
+<!--<script src="js/other/beaconApp.js"></script>-->
 
-  <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
