@@ -15,14 +15,13 @@ firebase.initializeApp(config);
 this.model = new ShoppingModel();
 
 var searchElement = document.getElementById("search.html");
-var printSearch = document.getElementById("search");
+var printSearch= document.getElementById("search");
 var scanElement = document.getElementById("scanProduct.html")
 var payElement = document.getElementById("pay.html")
 var cartElement = document.getElementById("shoppingCart.html")
 var printCart = document.getElementById("shoppingCart")
 var loginElement = document.getElementById("login.html")
 var defaultElement = document.getElementById("default-page")
-var navbarElement = document.getElementById("navbar")
 var productInfoElement = document.getElementById("productInfo.html")
 var printproductInfo = document.getElementById("productInfo")
 var signInElement = document.getElementById("logIn.html")
@@ -40,6 +39,7 @@ function signUpPage(){
 	signUpElement.style.display = "block";
 	navBarElement.style.display = "none";
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 // Logout
@@ -152,6 +152,9 @@ function loginPage() {
 }
 
 function searchPage() {
+=======
+function searchPage(){
+>>>>>>> parent of 42b7e5a... login
 	searchElement.style.display = "block";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -160,7 +163,8 @@ function searchPage() {
 	var pressInfo = new PressInfo(model, printproductInfo)
 
 }
-function scanPage() {
+function scanPage(){
+
 	var search = new Search(model, printSearch);
 	var shoppingCart = new ShoppingCart(model, printCart);
 	var pay = new Pay(model, payElement);
@@ -175,7 +179,7 @@ function scanPage() {
 
 }
 
-function payPage() {
+function payPage(){
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "block";
@@ -187,7 +191,7 @@ function payPage() {
 
 
 }
-function cartPage() {
+function cartPage(){
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -199,11 +203,16 @@ function cartPage() {
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 function productInfoPage(g) {
 	console.log("add vara: " + g)
 =======
 function productInfoPage(g){
 >>>>>>> 579a9cf62d8c4e85f337e6dfc7be3ac185b02857
+=======
+function productInfoPage(g){
+	console.log("add vara: "+ g)
+>>>>>>> parent of 42b7e5a... login
 	model.setCurrentProduct(g);
 
 	searchElement.style.display = "none";
@@ -217,6 +226,7 @@ function productInfoPage(g){
 
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 //scanPage();
 start()
 
@@ -224,6 +234,9 @@ start()
 
 
 
+=======
+scanPage();
+>>>>>>> parent of 42b7e5a... login
 //
 // 	var searchElement = document.getElementById("search.html");
 //
