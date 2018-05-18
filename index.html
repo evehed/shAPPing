@@ -19,11 +19,12 @@
     // Redirect console if running from Evothings Workbench.
     if (window.hyper) { console.log = hyper.log }
   </script>
-
   <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-database.js"></script>
+  <!--<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase-database.js"></script>-->
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
   <script>
+<<<<<<< HEAD
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyDFN8hxCYuOipmB-UWY0JsQPICV6jSqxHM",
@@ -36,12 +37,19 @@
     firebase.initializeApp(config);
     var database = firebase.database();
   </script>
+=======
+</script>
+>>>>>>> 579a9cf62d8c4e85f337e6dfc7be3ac185b02857
 </head>
 
 <body style="overflow-y: scroll;">
 
   <!--Potential Log-in-->
+<<<<<<< HEAD
   <div class="container" id="login.html">
+=======
+  <div class="container" id="logIn.html">
+>>>>>>> 579a9cf62d8c4e85f337e6dfc7be3ac185b02857
     <form class="form-signin">
       <h2 class="form-signin-heading">Please sign in</h2>
       <label for="inputEmail" class="sr-only">Email address</label>
@@ -53,6 +61,7 @@
           <input value="remember-me" type="checkbox"> Remember me
         </label>
       </div>
+<<<<<<< HEAD
       <button id="loginBtn" class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
       <!-- <button id="logoutBtn" class="btn btn-lg btn-primary btn-block" type="submit" >Sign out</button> -->
 
@@ -81,6 +90,34 @@
       <i class="material-icons">Sign out</i>
     </a>
     </div>
+=======
+      <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="defaultPage()">Sign in</button>
+    </form>
+    <button class="btn btn-lg btn-primary btn-block"  onclick="singUpPage()">Sign up</button>
+  </div>
+
+  <div class="container" id="signUp.html">
+    <form class="form-signup">
+      <h2 class="form-signin-heading">Sign up</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input id="inputEmailSignUp" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input id="inputPasswordSignUp" class="form-control" placeholder="Password" required="" type="password">
+    </form>
+    <button class="btn btn-lg btn-primary btn-block" onclick="signUpUser()">Sign up</button>
+
+    <button class="btn btn-lg btn-primary btn-block"  onclick="singInPage()">Back</button>
+  </div>
+
+
+<div id="navBar.html">
+  <!-- Navigator -->
+  <div class="navbar fixed-bottom navbar-light bg-light" >
+    <a class="nav-item nav-link" href="#" onclick="scanPage()"><i class="material-icons">speaker_phone</i></a>
+    <a class="nav-item nav-link" href="#" onclick="cartPage()"> <i class="material-icons">shopping_cart</i></a>
+    <a class="nav-item nav-link" href="#" onclick="searchPage()"><i class="material-icons">search</i></a>
+    <a class="nav-item nav-link" href="#" onclick="payPage()"><i class="material-icons">payment</i></a>
+>>>>>>> 579a9cf62d8c4e85f337e6dfc7be3ac185b02857
   </div>
 
   <!-- Scan product -->
