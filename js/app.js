@@ -41,6 +41,7 @@ function signUpPage(){
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 // Logout
 const logoutBtn = document.getElementById("logoutBtn");
@@ -155,6 +156,9 @@ function searchPage() {
 =======
 function searchPage(){
 >>>>>>> parent of 42b7e5a... login
+=======
+function searchPage(){
+>>>>>>> parent of 42b7e5a... login
 	searchElement.style.display = "block";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -204,11 +208,16 @@ function cartPage(){
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 function productInfoPage(g) {
 	console.log("add vara: " + g)
 =======
 function productInfoPage(g){
 >>>>>>> 579a9cf62d8c4e85f337e6dfc7be3ac185b02857
+=======
+function productInfoPage(g){
+	console.log("add vara: "+ g)
+>>>>>>> parent of 42b7e5a... login
 =======
 function productInfoPage(g){
 	console.log("add vara: "+ g)
@@ -227,6 +236,7 @@ function productInfoPage(g){
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 //scanPage();
 start()
 
@@ -234,6 +244,9 @@ start()
 
 
 
+=======
+scanPage();
+>>>>>>> parent of 42b7e5a... login
 =======
 scanPage();
 >>>>>>> parent of 42b7e5a... login
