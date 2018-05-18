@@ -5,6 +5,8 @@ var ShoppingModel = function () {
   var searchFilter = "";
   var currentProduct ="";
   var _this = this;
+  var allGroceriesDb = []
+  var currentUserModel;
 
   var allGroceries = [{
     "id": 49993,
@@ -26,24 +28,6 @@ var ShoppingModel = function () {
   }];
 
   var modelCart = [];
-    //{
-  //   "id": 49993,
-  //   "title": "Milk",
-  //   "section":"dairy",
-  //   "description": "Milk is a white liquid produced by the mammary glands of mammals. It is the primary source of nutrition for infant mammals (including humans who are breastfed) before they are able to digest other types of food. ",
-  //   "price": 14 ,
-  //   "img": "https://www.cannadish.net/wp-content/uploads/2017/06/milk.jpg"
-  //
-  // },
-  // {
-  //   "id": 537176,
-  //   "title": "Bulgur",
-  //   "section": "grain",
-  //   "description": "Bulgur is recognized as a whole grain by the United States Department of Agriculture.[3] Bulgur is sometimes confused with cracked wheat, which is crushed wheat grain that has not been parboiled.[4] Instead, bulgur is cracked wheat that has been partially cooked. Bulgur is a common ingredient in cuisines of many countries of the Middle East and Mediterranean Basin.",
-  //   "price": 10,
-  //   "img": "http://dieteticdirections.com/wp-content/uploads/2014/06/5.jpg"
-  //
-  // }
 
 
 
@@ -59,20 +43,38 @@ this.addObserver = function(observer) {
 
 
   this.addToCart = function (id) {
-    console.log("adda: "+id)
     var product = _this.getProductInfo(id)
+    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').add(product)
     modelCart.push(product)
-    console.log("Shoppingcart"+modelCart);
     notifyObservers();
 
   }
 
   this.removeFromCart = function (product) {
-    for (var index = 0; index < modelCart.length; index++) {
-      if (modelCart[index].id === product) {
-        modelCart.splice(index, 1);
-      }
-    }
+    //var cart = _this.getShoppingCart(currentUserModel)
+    //console.log("cart"+cart)
+    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
+    .then(function(cartDB) {
+console.log("CAAARTDB"+cartDB.)
+      cartDB.forEach(function(doc) {
+
+        console.log("DOOOOCKEN:"+doc.data().id);
+        if(doc.data().id == product){
+          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete();
+          var index = _this.yourCourses4.findIndex(function(c) {
+            return c.id == product
+          })
+
+        }
+      })
+    })
+    // cart.forEach(function(doc) {
+    // //  console.log("DOC"+doc.id)
+    //   if(doc.id == product){
+    //     firebase.firestore().doc('users/'+ _this.currentUser).collection('shoppingCart').doc(doc.id).delete();
+    //   }
+    // })
+
     notifyObservers()
   }
   this.setSearchFilter = function(val){
@@ -84,40 +86,70 @@ this.addObserver = function(observer) {
     notifyObservers();
   }
   this.getCurrentProductInfo = function(){
-    var result = allGroceries.find( groceri => groceri.id === currentProduct );
+    var result;
+    allGroceriesDb.forEach(function(groceri){
+      if(groceri.id == currentProduct){
+        result = groceri;
+      }
+    })
     return result;
   }
   this.getProductInfo = function(id){
-    var result = allGroceries.find( groceri => groceri.id === id );
+    var result;
+    allGroceriesDb.forEach(function(groceri){
+      if(groceri.id == id){
+        result = groceri;
+      }
+    })
     return result;
   }
   this.getAllGroceries = function(){
-    return allGroceries;
+    return allGroceriesDb;
+  }
+
+  this.getAllGroceriesDb = function(){
+    var getDatabaseInfo = firebase.firestore().collection("groceries").get()
+    .then(function(query) {
+      query.forEach(function(doc) {
+        allGroceriesDb.push(doc.data())
+      })
+    });
   }
   this.getFilteredGroceries = function(){
-        return allGroceries.filter(function(g) {
-          var found = true;
-          if(!searchFilter == ""){
-            found = false;
-            if(g.title.indexOf(searchFilter) != -1)
-            {
-              found = true;
-            }
-            return g.title == searchFilter && found;
-          }
-          else{
-            return found;
-          }
-        });
 
-
-  }
-  this.getShoppingCart = function(){
-    console.log("cart i model"+modelCart)
-    return modelCart;
+    return allGroceriesDb.filter(function(g){
+      console.log("gggge"+g)
+      var found = true;
+      if(!searchFilter == ""){
+        found = false;
+        console.log(g)
+        if(g.title.indexOf(searchFilter) != -1){
+          found = true
+        }
+        return g.title == searchFilter && found;
+      }
+      else{
+        return found
+      }
+    })
   }
 
+  this.getShoppingCart = function(currentUser){
+
+    currentUserModel = currentUser
+    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
+    .then(function(query) {
+      query.forEach(function(doc) {
+        shoppingCart.push(doc.data())
+      })
+    });
+
+    console.log("shopping caaaary:"+shoppingCart)
+
+    return shoppingCart;
+  }
 
 
+    _this.getAllGroceriesDb();
 
 }

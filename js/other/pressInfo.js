@@ -3,7 +3,9 @@ var PressInfo = function (model, element){
   this.update = function(){
 
     var g = model.getCurrentProductInfo();
-    console.log("här e g: "+g)
+    var b = model.getAllGroceries()
+    // console.log("här är b"+b)
+     console.log("här e g: "+g)
     if(g != ""){
       while (element.firstChild) {
         element.removeChild(element.firstChild);

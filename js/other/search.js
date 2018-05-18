@@ -23,11 +23,11 @@ console.log(element)
     while (element.firstChild) {
       element.removeChild(element.firstChild);
     }
-    var groceriesArray = model.getAllGroceries()
+    //var groceriesArray = model.getAllGroceries()
     var filterGroceries = model.getFilteredGroceries();
     console.log("efter filtering"+filterGroceries)
     filterGroceries.forEach(function(g){
-      console.log(g)
+
 
       var grocerienode = document.createElement("ons-card");
       grocerienode.setAttribute("id",g.id);
@@ -36,6 +36,7 @@ console.log(element)
       var groceriestitle = document.createElement("h4");
       var groceriessection = document.createElement("h6");
       var textnodetitle = document.createTextNode(g.title);
+      console.log("titlaaarna: "+g.title)
       var textnodesection = document.createTextNode("Section: "+ g.section);
 
       groceriestitle.appendChild(textnodetitle);

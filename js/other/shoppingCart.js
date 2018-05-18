@@ -1,14 +1,13 @@
-var ShoppingCart = function (model, element){
+var ShoppingCart = function (model, element, currenUser){
   //Shopping cart of the items that the user have added (stored in model)
 
   this.update = function(){
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
-  //console.log("empty cart: "+element)
 
-  var shoppingCart = model.getShoppingCart();
-  console.log("inne i update, shoppongcart: "+ shoppingCart)
+  var shoppingCart = model.getShoppingCart(currenUser);
+  //console.log("current user i shoppingcart: "+ currenUser)
   var totalPrice = 0
 
   for (var i=0; i < shoppingCart.length; i++){
@@ -48,6 +47,7 @@ var ShoppingCart = function (model, element){
     removeDiv.className = "col-1"
     var remove = document.createElement("ons-icon")
     remove.setAttribute("icon","remove")
+    //console.log("Här är ett object"+shoppingCart[i].id)
     remove.setAttribute("onClick", "model.removeFromCart(" + shoppingCart[i].id + ")")
     removeDiv.appendChild(remove)
     row.appendChild(removeDiv)
@@ -57,6 +57,7 @@ var ShoppingCart = function (model, element){
     info.appendChild(row)
     card.appendChild(info)
     element.appendChild(card)
+    //console.log(element);
   }
 
   // // ADD TOTAL PRICE TO BOTTOM

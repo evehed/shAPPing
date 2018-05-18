@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 
 //We instantiate our model
 this.model = new ShoppingModel();
+var currenUser;
 
 var searchElement = document.getElementById("search.html");
 var printSearch= document.getElementById("search");
@@ -51,21 +52,18 @@ function signUpUser(){
 
 	//Create new user with firebase
 	firebase.auth().createUserWithEmailAndPassword(this.emailIn, this.passwordIn)
-	var currentUser = firebase.auth().currentUser
+	this.currentUser = firebase.auth().currentUser
 
 	//Create a user instance in database for the created user
-		firebase.firestore().doc('users/'+ currentUser.uid).set({
-			email: currentUser.email,
+		firebase.firestore().doc('users/'+ this.currentUser.uid).set({
+			email: this.currentUser.email,
 		})
-		firebase.firestore().doc('users/'+ currentUser.uid).collection('shoppingCart').add({
-			p1: "",
-			p2: "",
-			p3: "",
-			p4: "",
-		})
+		firebase.firestore().doc('users/'+ this.currentUser.uid).collection('shoppingCart')
 		.catch((err) => {
 			 	console.log("Error: "+err);
 		})
+		currenUser = this.currentUser;
+		console.log("current user setup:"+currenUser)
 }
 
 
@@ -93,7 +91,7 @@ function login() {
 		const pass = inputPassword.value;
 		const auth = firebase.auth();
 
-		// Sign in 
+		// Sign in
 		const promise = auth.signInWithEmailAndPassword(email, pass);
 		promise.catch(e => console.log(e.message));
 
@@ -105,6 +103,9 @@ function login() {
 firebase.auth().onAuthStateChanged(firebaseUser => {
 	if (firebaseUser) {
 		console.log(firebaseUser);
+		this.currentUser = firebase.auth().currentUser
+		currenUser = this.currentUser;
+		console.log("current user setup:"+currenUser)
 		enterApp()
 
 
@@ -122,9 +123,13 @@ logoutBtn.addEventListener("click", e => {
 
 // Enter app when user login
 function enterApp() {
-	searchElement.style.display = "block";
-	loginElement.style.display = "none"
+	// searchElement.style.display = "block";
+  loginElement.style.display = "none"
 	navBarElement.style.display = "flex";
+
+	searchPage()
+
+
 
 }
 
@@ -134,7 +139,7 @@ function loginPage() {
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
 	cartElement.style.display = "none";
-	printCart.style.display = "none";
+	//printCart.style.display = "none";
 	loginElement.style.display = "block"
 	navBarElement.style.display = "none";
 	productInfoElement.style.display = "none";
@@ -143,7 +148,13 @@ function loginPage() {
 }
 
 
+
 function searchPage(){
+	console.log("nu körs search")
+	var search = new Search(model, printSearch);
+	var shoppingCart = new ShoppingCart(model, printCart, currenUser);
+	var pay = new Pay(model, payElement);
+
 	searchElement.style.display = "block";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -153,14 +164,10 @@ function searchPage(){
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
 
-	var pressInfo = new PressInfo(model, printproductInfo)
 
 }
 function scanPage(){
 
-	var search = new Search(model, printSearch);
-	var shoppingCart = new ShoppingCart(model, printCart);
-	var pay = new Pay(model, payElement);
 	searchElement.style.display = "none";
 	scanElement.style.display = "block";
 	payElement.style.display = "none";
@@ -194,10 +201,13 @@ function cartPage(){
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
 
+//Kolla på varför denna behövs??? var är den none???
+	printCart.style.display = "block";
+
 }
 function productInfoPage(g){
 	model.setCurrentProduct(g);
-
+	var pressInfo = new PressInfo(model, printproductInfo)
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
