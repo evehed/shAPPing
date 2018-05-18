@@ -19,13 +19,18 @@ var scanElement = document.getElementById("scanProduct.html")
 var payElement = document.getElementById("pay.html")
 var cartElement = document.getElementById("shoppingCart.html")
 var printCart = document.getElementById("shoppingCart")
-var loginElement = document.getElementById("login.html")
+var loginElement = document.getElementById("logIn.html")
 var defaultElement = document.getElementById("default-page")
 var productInfoElement = document.getElementById("productInfo.html")
 var printproductInfo = document.getElementById("productInfo")
 var signInElement = document.getElementById("logIn.html")
 var signUpElement = document.getElementById("signUp.html")
 var navBarElement = document.getElementById("navBar.html")
+
+
+// Logout
+const logoutBtn = document.getElementById("logoutBtn");
+
 
 function signUpPage(){
 	console.log("signUp")
@@ -34,6 +39,7 @@ function signUpPage(){
 	payElement.style.display = "none";
 	cartElement.style.display = "none";
 	productInfoElement.style.display = "none";
+	loginElement.style.display = "none"
 	signInElement.style.display = "none";
 	signUpElement.style.display = "block";
 	navBarElement.style.display = "none";
@@ -61,6 +67,82 @@ function signUpUser(){
 			 	console.log("Error: "+err);
 		})
 }
+
+
+function start() {
+	scanProduct.style.display = "none";
+	payElement.style.display = "none";
+	productInfoElement.style.display = "none";
+	searchElement.style.display = "none";
+	shoppingCart.style.display = "none";
+	navBarElement.style.display = "none";
+	signUpElement.style.display = "none";
+
+	login()
+}
+
+// Login
+function login() {
+	const inputEmail = document.getElementById("inputEmail");
+	const inputPassword = document.getElementById("inputPassword");
+	const loginBtn = document.getElementById("loginBtn");
+
+
+	loginBtn.addEventListener("click", e => {
+		const email = inputEmail.value;
+		const pass = inputPassword.value;
+		const auth = firebase.auth();
+
+		// Sign in 
+		const promise = auth.signInWithEmailAndPassword(email, pass);
+		promise.catch(e => console.log(e.message));
+
+
+	})
+}
+
+// OnstateChanged
+firebase.auth().onAuthStateChanged(firebaseUser => {
+	if (firebaseUser) {
+		console.log(firebaseUser);
+		enterApp()
+
+
+	} else {
+		console.log("not logged in");
+	}
+})
+
+// Logout eventlistener
+logoutBtn.addEventListener("click", e => {
+	firebase.auth().signOut();
+	loginPage()
+})
+
+
+// Enter app when user login
+function enterApp() {
+	searchElement.style.display = "block";
+	loginElement.style.display = "none"
+	navBarElement.style.display = "flex";
+
+}
+
+function loginPage() {
+	searchElement.style.display = "none";
+	printSearch.style.display = "none";
+	scanElement.style.display = "none";
+	payElement.style.display = "none";
+	cartElement.style.display = "none";
+	printCart.style.display = "none";
+	loginElement.style.display = "block"
+	navBarElement.style.display = "none";
+	productInfoElement.style.display = "none";
+	printproductInfo.style.display = "none";
+
+}
+
+
 function searchPage(){
 	searchElement.style.display = "block";
 	scanElement.style.display = "none";
@@ -126,8 +208,7 @@ function productInfoPage(g){
 	navBarElement.style.display = "block";
 
 }
-
-signUpPage();
+start()
 
 // var beaconApp = new BeaconApp(model);
 
