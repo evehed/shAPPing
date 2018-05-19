@@ -15,9 +15,6 @@ var Search = function (model, element){
 
 console.log(element)
 
-
-
-
   this.update = function(){
 
     while (element.firstChild) {
@@ -31,6 +28,7 @@ console.log(element)
 
       var grocerienode = document.createElement("ons-card");
       grocerienode.setAttribute("id",g.id);
+      grocerienode.setAttribute("class", "col-10 mx-auto")
       grocerienode.setAttribute("value",g);
       grocerienode.setAttribute("onclick","productInfoPage("+g.id+")");
       var groceriestitle = document.createElement("h4");

@@ -55,7 +55,7 @@ this.addObserver = function(observer) {
     //console.log("cart"+cart)
     firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(cartDB) {
-console.log("CAAARTDB"+cartDB.)
+console.log("CAAARTDB"+cartDB)
       cartDB.forEach(function(doc) {
 
         console.log("DOOOOCKEN:"+doc.data().id);
@@ -144,7 +144,7 @@ console.log("CAAARTDB"+cartDB.)
       })
     });
 
-    console.log("shopping caaaary:"+shoppingCart)
+    console.log("shopping caaaary:" + JSON.stringify(shoppingCart))
 
     return shoppingCart;
   }

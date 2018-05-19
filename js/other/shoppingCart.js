@@ -12,8 +12,9 @@ var ShoppingCart = function (model, element, currenUser){
 
   for (var i=0; i < shoppingCart.length; i++){
     var card = document.createElement("ons-card")
+    card.className = "col-10 mx-auto"
     var info = document.createElement("div")
-    info.className = "col-12"
+    info.className = "col-12 mx-auto"
     var row = document.createElement("div")
     row.className = "row"
 
@@ -26,7 +27,7 @@ var ShoppingCart = function (model, element, currenUser){
 
   //  TITLE INSERT
     var titleDiv = document.createElement("div")
-    titleDiv.className = "col-9"
+    titleDiv.className = "col-7"
     var p = document.createElement("p")
     var title = document.createTextNode(shoppingCart[i].title)
     p.append(title)
@@ -35,9 +36,9 @@ var ShoppingCart = function (model, element, currenUser){
     //
     // // PRICE INSERT
     var priceDiv = document.createElement("div")
-    priceDiv.className = "col-2"
+    priceDiv.className = "col-3"
     var p = document.createElement("p")
-    var price = document.createTextNode(shoppingCart[i].price)
+    var price = document.createTextNode(shoppingCart[i].price + " kr")
     p.appendChild(price)
     priceDiv.appendChild(p)
     row.appendChild(priceDiv)
