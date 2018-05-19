@@ -13,7 +13,7 @@ var Search = function (model, element){
   // element.appendChild(node);
 
 
-console.log(element)
+  //console.log(element)
 
   this.update = function(){
 
@@ -34,7 +34,7 @@ console.log(element)
       var groceriesTitle = document.createElement("h4");
       var groceriesSection = document.createElement("h6");
       var textNodeTitle = document.createTextNode(g.title);
-      console.log("titlaaarna: "+g.title)
+      //console.log("titlaaarna: "+g.title)
       var textNodeSection = document.createTextNode("Section: "+ g.section);
 
       groceriesTitle.appendChild(textNodeTitle);
@@ -48,8 +48,5 @@ console.log(element)
   }
   this.update();
   model.addObserver(this);
-
   //model.getFilteredGroceries("hello");
-
-
 }

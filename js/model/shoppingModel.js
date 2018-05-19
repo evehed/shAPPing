@@ -50,6 +50,7 @@ var ShoppingModel = function () {
     firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').add(product)
     modelCart.push(product)
     notifyObservers();
+    return true
   }
 
 
@@ -151,7 +152,7 @@ var ShoppingModel = function () {
   const loadShoppingCart = async message => {
     shoppingCart = [];
     currentUserModel = currentUser
-    console.log("CURRENT USER IS SET")
+    //console.log("CURRENT USER IS SET")
     var bajs = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(query) {
       query.forEach(function(doc) {

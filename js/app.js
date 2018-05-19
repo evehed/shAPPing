@@ -45,7 +45,7 @@ var loginBtn = document.getElementById("loginBtn");
 
 // Show sign up page
 function signUpPage() {
-	console.log("signUp")
+	//console.log("signUp")
 	signUpElement.style.display = "block"
 	loginElement.style.display = "none"
 }
@@ -204,7 +204,7 @@ function searchPage() {
 	var search = new Search(model, printSearch)
 	var pay = new Pay(model, payElement)
 	var shoppingCart = new ShoppingCart(model, printCart, currenUser)
-	console.log("nu körs search")
+	//console.log("nu körs search")
 	
 
 	searchElement.style.display = "block";
@@ -272,6 +272,17 @@ function productInfoPage(g) {
 	navBarElement.style.display = "block";
 
 }
+
+function catchAddToCart(id) {
+	//console.log("lTTTTTTTTTTT")
+    model.addToCart(id)
+	//console.log("WWWWWWWWW")
+    var successMsgElement = document.getElementById("success-message");
+    successMsgElement.innerHTML = "Successfully added to cart!"
+    successMsgElement.style.display = "block";
+}
+
+
 start()
 
 // var beaconApp = new BeaconApp(model);
