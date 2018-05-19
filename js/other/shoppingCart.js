@@ -2,9 +2,12 @@ var ShoppingCart = function (model, element, currenUser){
   //Shopping cart of the items that the user have added (stored in model)
 
   this.update = function(){
+    
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
+
+  
 
   var shoppingCart = model.getShoppingCart(currenUser);
   //console.log("current user i shoppingcart: "+ currenUser)

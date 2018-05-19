@@ -30,11 +30,11 @@ var printproductInfo = document.getElementById("productInfo")
 var signUpElement = document.getElementById("signUp.html")
 var navBarElement = document.getElementById("navBar.html")
 var loginInfoElement = document.getElementById("loginInfo")
+var signUpInfoElement = document.getElementById("signUpInfo")
 
 // Scan product 1 & 2
 var scanProduct1 = document.getElementById("scanProduct1")
 var scanProduct2 = document.getElementById("scanProduct2")
-
 
 // Login, Logout
 var logoutBtn = document.getElementById("logoutBtn");
@@ -56,7 +56,22 @@ function signUpUser() {
 	this.passwordIn = document.getElementById("inputPasswordSignUp").value
 
 	//Create new user with firebase
-	firebase.auth().createUserWithEmailAndPassword(this.emailIn, this.passwordIn)
+	const promise = firebase.auth().createUserWithEmailAndPassword(this.emailIn, this.passwordIn)
+	promise.catch(e => {
+
+		// Display error message
+		signUpInfoElement.style.display = "block"
+
+		if(e.code === "auth/email-already-in-use"){
+			signUpInfoElement.innerHTML = "Email already exists, try another one!"
+		} else if (e.code === "auth/weak-password"){
+			signUpInfoElement.innerHTML = "Password should be at least 6 characters!"
+		} else if (e.code === "auth/network-request-failed"){
+			loginInfoElement.innerHTML = "No internet access!"
+			alert("No internet access!")
+		}
+	})
+
 	this.currentUser = firebase.auth().currentUser
 
 	//Create a user instance in database for the created user
@@ -138,6 +153,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		// Remove error message
 		loginInfoElement.style.display = "none"
 		loginInfoElement.innerHTML = ''
+
+		signUpInfoElement.style.display = "none"
+		signUpInfoElement.innerHTML = ''
 		
 		console.log("current user: uid " + currenUser.uid + ' email: ' + currenUser.email)
 		enterApp()
