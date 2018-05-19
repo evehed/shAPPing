@@ -35,6 +35,11 @@ var ShoppingModel = function () {
     }
   }
 
+  this.setCurrentUser = function(id){
+    currentUserModel = currentUser
+
+  }
+
   this.addObserver = function(observer) {
     observers.push(observer);
   }
@@ -138,7 +143,7 @@ var ShoppingModel = function () {
   }
 
   this.runShoppingCartLoader = function(){
-    getShoppingCart();
+    loadShoppingCart();
   }
 
   this.returnShoppingCart = function(currentUser){

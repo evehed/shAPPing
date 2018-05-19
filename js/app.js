@@ -179,6 +179,7 @@ logoutBtn.addEventListener("click", e => {
 function enterApp() {
 	loginElement.style.display = "none"
 	navBarElement.style.display = "flex";
+	model.setCurrentUser(currenUser);
 	
 	searchPage()
 }
