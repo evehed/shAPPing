@@ -107,11 +107,11 @@ this.addObserver = function(observer) {
   this.getFilteredGroceries = function(){
 
     return allGroceriesDb.filter(function(g){
-      console.log("gggge"+g)
+      //console.log("gggge"+g)
       var found = true;
       if(!searchFilter == ""){
         found = false;
-        console.log(g)
+        //console.log(g)
         if(g.title.indexOf(searchFilter) != -1){
           found = true
         }
@@ -123,17 +123,29 @@ this.addObserver = function(observer) {
     })
   }
 
-  this.getShoppingCart = function(currentUser){
+
+
+  const loadShoppingCart = async message => {
+    shoppingCart = [];
 
     currentUserModel = currentUser
-    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
+    var bajs = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(query) {
       query.forEach(function(doc) {
         shoppingCart.push(doc.data())
       })
     });
 
-    console.log("shopping caaaary:" + JSON.stringify(shoppingCart))
+    //console.log("shopping caaaary:" + JSON.stringify(shoppingCart))
+    console.log(shoppingCart)
+    notifyObservers()
+  }
+
+  this.runShoppingCartLoader = function(){
+    getShoppingCart();
+  }
+
+  this.returnShoppingCart = function(currentUser){
 
     return shoppingCart;
   }

@@ -253,6 +253,7 @@ function cartPage() {
 	loginElement.style.display = "none"
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
+	model.runShoppingCartLoader();
 
 
 
