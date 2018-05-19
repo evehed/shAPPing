@@ -52,6 +52,28 @@ var ShoppingModel = function () {
     notifyObservers();
   }
 
+
+  async function removeFromCart(product){
+    var wait = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
+    .then(function(shoppingCartDb) {
+      shoppingCartDb.forEach(function(doc) {
+        if(doc.data().id == product){
+          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete();
+        }
+      })
+    })
+
+    notifyObservers()
+  }
+  /*
+  const removeFromCart = async message => {
+    
+  }*/
+
+  this.runRemove = function(product){
+    removeFromCart(product)
+  }
+  /*
   this.removeFromCart = function (product) {
     firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(shoppingCartDb) {
@@ -63,7 +85,7 @@ var ShoppingModel = function () {
     })
 
     notifyObservers()
-  }
+  }*/
 
 
 
