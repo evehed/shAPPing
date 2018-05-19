@@ -29,29 +29,25 @@ var ShoppingModel = function () {
 
   var modelCart = [];
 
-
-
   var notifyObservers = function(obj) {
-  for(var i=0; i<observers.length; i++){
-    observers[i].update(obj);
+    for(var i=0; i<observers.length; i++){
+      observers[i].update(obj);
+    }
   }
-}
 
-this.addObserver = function(observer) {
-  observers.push(observer);
-}
-
+  this.addObserver = function(observer) {
+    observers.push(observer);
+  }
 
   this.addToCart = function (id) {
     var product = _this.getProductInfo(id)
+    //console.log("asdasdasd" + currentUserModel.uid)
     firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').add(product)
     modelCart.push(product)
     notifyObservers();
-
   }
 
   this.removeFromCart = function (product) {
-
     firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(shoppingCartDb) {
       shoppingCartDb.forEach(function(doc) {
@@ -76,18 +72,18 @@ this.addObserver = function(observer) {
   }
   this.getCurrentProductInfo = function(){
     var result;
-    allGroceriesDb.forEach(function(groceri){
-      if(groceri.id == currentProduct){
-        result = groceri;
+    allGroceriesDb.forEach(function(grocery){
+      if(grocery.id == currentProduct){
+        result = grocery;
       }
     })
     return result;
   }
   this.getProductInfo = function(id){
     var result;
-    allGroceriesDb.forEach(function(groceri){
-      if(groceri.id == id){
-        result = groceri;
+    allGroceriesDb.forEach(function(grocery){
+      if(grocery.id == id){
+        result = grocery;
       }
     })
     return result;
@@ -127,8 +123,8 @@ this.addObserver = function(observer) {
 
   const loadShoppingCart = async message => {
     shoppingCart = [];
-
     currentUserModel = currentUser
+    console.log("CURRENT USER IS SET")
     var bajs = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(query) {
       query.forEach(function(doc) {
@@ -146,7 +142,6 @@ this.addObserver = function(observer) {
   }
 
   this.returnShoppingCart = function(currentUser){
-
     return shoppingCart;
   }
 

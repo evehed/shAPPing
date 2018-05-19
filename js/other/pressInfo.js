@@ -1,43 +1,47 @@
 var PressInfo = function (model, element){
+    console.log("PressInfo skapad!")
   //Info is displayed when you scan a item
   this.update = function(){
+    console.log("PressInfo update körs!")
 
     var g = model.getCurrentProductInfo();
     var b = model.getAllGroceries()
+    console.log(b.length)
     // console.log("här är b"+b)
      console.log("här e g: "+g)
     if(g != ""){
       while (element.firstChild) {
         element.removeChild(element.firstChild);
       }
-    var grocerienode = document.createElement("ons-card");
+    var groceryNode = document.createElement("ons-card");
 
     //var string = "productInfoPage("+g+")";
-    //grocerienode.setAttribute("onclick","productInfoPage("+g.id+")");
-    var groceriestitle = document.createElement("h4");
-    var groceriessection = document.createElement("h6");
-    var groceriesdescription = document.createElement("h8");
+    //groceryNode.setAttribute("onclick","productInfoPage("+g.id+")");
+    var groceriesTitle = document.createElement("h4");
+    var groceriesSection = document.createElement("h6");
+    var groceriesDescription = document.createElement("h8");
     var addButton = document.createElement("button");
     addButton.className = "btn btn-outline-success";
     addButton.setAttribute("onclick", "model.addToCart("+g.id+")");
+    console.log("gid!! " + g.id)
 
-    var textnodetitle = document.createTextNode(g.title);
-    var textnodesection = document.createTextNode("Section: "+ g.section);
-    var textnodedescription = document.createTextNode(g.description);
-    var textnodedebutton = document.createTextNode("Add to cart");
+    var textNodeTitle = document.createTextNode(g.title);
+    var textNodeSection = document.createTextNode("Section: "+ g.section);
+    var textNodeDescription = document.createTextNode(g.description);
+    var textNodedeButton = document.createTextNode("Add to cart");
 
 
-    groceriesdescription.appendChild(textnodedescription);
-    groceriestitle.appendChild(textnodetitle);
-    groceriessection.appendChild(textnodesection);
-    groceriestitle.setAttribute("title", g.title);
-    addButton.appendChild(textnodedebutton);
+    groceriesDescription.appendChild(textNodeDescription);
+    groceriesTitle.appendChild(textNodeTitle);
+    groceriesSection.appendChild(textNodeSection);
+    groceriesTitle.setAttribute("title", g.title);
+    addButton.appendChild(textNodedeButton);
 
-    grocerienode.appendChild(groceriestitle);
-    grocerienode.appendChild(groceriessection);
-    grocerienode.appendChild(groceriesdescription);
-    grocerienode.appendChild(addButton)
-    element.appendChild(grocerienode);
+    groceryNode.appendChild(groceriesTitle);
+    groceryNode.appendChild(groceriesSection);
+    groceryNode.appendChild(groceriesDescription);
+    groceryNode.appendChild(addButton)
+    element.appendChild(groceryNode);
   }
 
 }

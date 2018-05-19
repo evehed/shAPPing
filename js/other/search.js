@@ -22,27 +22,27 @@ console.log(element)
     }
     //var groceriesArray = model.getAllGroceries()
     var filterGroceries = model.getFilteredGroceries();
-    console.log("efter filtering"+filterGroceries)
+    //console.log("efter filtering"+filterGroceries)
     filterGroceries.forEach(function(g){
 
 
-      var grocerienode = document.createElement("ons-card");
-      grocerienode.setAttribute("id",g.id);
-      grocerienode.setAttribute("class", "col-10 mx-auto")
-      grocerienode.setAttribute("value",g);
-      grocerienode.setAttribute("onclick","productInfoPage("+g.id+")");
-      var groceriestitle = document.createElement("h4");
-      var groceriessection = document.createElement("h6");
-      var textnodetitle = document.createTextNode(g.title);
+      var groceryNode = document.createElement("ons-card");
+      groceryNode.setAttribute("id",g.id);
+      groceryNode.setAttribute("class", "col-10 mx-auto")
+      groceryNode.setAttribute("value",g);
+      groceryNode.setAttribute("onclick","productInfoPage("+g.id+")");
+      var groceriesTitle = document.createElement("h4");
+      var groceriesSection = document.createElement("h6");
+      var textNodeTitle = document.createTextNode(g.title);
       console.log("titlaaarna: "+g.title)
-      var textnodesection = document.createTextNode("Section: "+ g.section);
+      var textNodeSection = document.createTextNode("Section: "+ g.section);
 
-      groceriestitle.appendChild(textnodetitle);
-      groceriessection.appendChild(textnodesection);
-      groceriestitle.setAttribute("title", g.title);
-      grocerienode.appendChild(groceriestitle);
-      grocerienode.appendChild(groceriessection);
-      element.appendChild(grocerienode);
+      groceriesTitle.appendChild(textNodeTitle);
+      groceriesSection.appendChild(textNodeSection);
+      groceriesTitle.setAttribute("title", g.title);
+      groceryNode.appendChild(groceriesTitle);
+      groceryNode.appendChild(groceriesSection);
+      element.appendChild(groceryNode);
 
     })
   }

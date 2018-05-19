@@ -83,7 +83,7 @@ function signUpUser() {
 			console.log("Error: " + err);
 		})
 	currenUser = this.currentUser;
-	console.log("current user setup:" + currenUser)
+	//console.log("current user setup:" + currenUser)
 }
 
 
@@ -146,7 +146,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
 	// When a user is logged in, enter the app.
 	if (firebaseUser) {
-		console.log(firebaseUser);
+		//console.log(firebaseUser);
 		this.currentUser = firebase.auth().currentUser
 		currenUser = this.currentUser
 
