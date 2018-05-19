@@ -51,32 +51,21 @@ this.addObserver = function(observer) {
   }
 
   this.removeFromCart = function (product) {
-    //var cart = _this.getShoppingCart(currentUserModel)
-    //console.log("cart"+cart)
-    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
-    .then(function(cartDB) {
-console.log("CAAARTDB"+cartDB)
-      cartDB.forEach(function(doc) {
 
-        console.log("DOOOOCKEN:"+doc.data().id);
+    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
+    .then(function(shoppingCartDb) {
+      shoppingCartDb.forEach(function(doc) {
         if(doc.data().id == product){
           firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete();
-          var index = _this.yourCourses4.findIndex(function(c) {
-            return c.id == product
-          })
-
         }
       })
     })
-    // cart.forEach(function(doc) {
-    // //  console.log("DOC"+doc.id)
-    //   if(doc.id == product){
-    //     firebase.firestore().doc('users/'+ _this.currentUser).collection('shoppingCart').doc(doc.id).delete();
-    //   }
-    // })
 
     notifyObservers()
   }
+
+
+
   this.setSearchFilter = function(val){
     searchFilter = val;
     notifyObservers();

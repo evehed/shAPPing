@@ -28,6 +28,7 @@
 </head>
 
 <body style="overflow-y: scroll;">
+<div class="container mx-auto">
 
   <!--Potential Log-in-->
   <div class="container" id="logIn.html">
@@ -115,7 +116,7 @@
   <!-- Search -->
   <div id="search.html">
     <h5 class="center header"> Search a product</h5>
-    <input class="form-control mr-sm-2 col-10" type="search" id="myInput" placeholder="Search" style="margin: auto; display: block;"
+    <input class="form-control col-10 mx-auto" type="search" id="myInput" placeholder="Search" style="margin: auto; display: block;"
       onchange="model.setSearchFilter(this.value);"></input>
     <div id="search">
     </div>
@@ -146,6 +147,7 @@
     scanproduct2
   </div>
   </div>
+</div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
   <script src="cordova.js"></script>
