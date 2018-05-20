@@ -189,11 +189,11 @@ var ShoppingModel = function () {
   this.getTotalPrice = function(){
     totalPrice = 0;
     for(var i=0; i<shoppingCart.length; i++){
-      console.log("Product is: " + shoppingCart[i])
+     //console.log("Product is: " + shoppingCart[i])
       var grocery = shoppingCart[i]
       totalPrice = totalPrice + parseInt(grocery.price)
     }
-    console.log("Total price: " + totalPrice)
+    //console.log("Total price: " + totalPrice)
     return totalPrice
   }
 
