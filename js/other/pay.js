@@ -4,7 +4,7 @@ var Pay = function (model, productsElement, userElement, currentUser) {
 
   this.update = function () {
 
-    console.log(productsElement)
+    //console.log(productsElement)
 
 
     // Clear divs

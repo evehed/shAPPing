@@ -15,38 +15,43 @@ var PressInfo = function (model, element){
             while (element.firstChild) {
                 element.removeChild(element.firstChild);
             }
-            var groceryNode = document.createElement("ons-card");
+            let groceryNode = document.createElement("ons-card");
 
             //var string = "productInfoPage("+g+")";
             //groceryNode.setAttribute("onclick","productInfoPage("+g.id+")");
-            var groceriesTitle = document.createElement("h4");
-            var groceriesSection = document.createElement("h6");
-            var groceriesDescription = document.createElement("h8");
-            var addButton = document.createElement("button");
+            let groceriesTitle = document.createElement("h4");
+            let groceriesSection = document.createElement("h6");
+
+            let groceriesLocation = document.createElement("h6")
+            //groceriesLocation.style.fontStyle = "italic";
+
+            let groceriesDescription = document.createElement("h8")
+            let addButton = document.createElement("button");
             addButton.className = "btn btn-outline-success";
             addButton.setAttribute("onclick", "model.addToCart("+g.id+")");
             //addButton.setAttribute("onclick", "catchAddToCart("+g.id+")");
-            var successMessage = document.createElement("p");
+            let successMessage = document.createElement("p");
             successMessage.setAttribute("id", "success-message");
             successMessage.className = "alert alert-success";
             successMessage.style.display = "none";
-
-            //console.log("gid!! " + g.id)
-
-            var textNodeTitle = document.createTextNode(g.title);
-            var textNodeSection = document.createTextNode("Section: "+ g.section);
-            var textNodeDescription = document.createTextNode(g.description);
-            var textNodedeButton = document.createTextNode("Add to cart");
+            
+            let textNodeTitle = document.createTextNode(g.title);
+            let textNodeSection = document.createTextNode("Section: "+ g.section);
+            let textNodeLocation = document.createTextNode("Location: Aisle " + g.aisle + ", Shelf " + g.shelf);
+            let textNodeDescription = document.createTextNode(g.description);
+            let textNodedeButton = document.createTextNode("Add to cart");
 
 
             groceriesDescription.appendChild(textNodeDescription);
             groceriesTitle.appendChild(textNodeTitle);
             groceriesSection.appendChild(textNodeSection);
+            groceriesLocation.appendChild(textNodeLocation);
             groceriesTitle.setAttribute("title", g.title);
             addButton.appendChild(textNodedeButton);
 
             groceryNode.appendChild(groceriesTitle);
             groceryNode.appendChild(groceriesSection);
+            groceryNode.appendChild(groceriesLocation);
             groceryNode.appendChild(groceriesDescription);
             groceryNode.appendChild(addButton)
             groceryNode.appendChild(successMessage)
