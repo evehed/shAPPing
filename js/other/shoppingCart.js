@@ -11,12 +11,11 @@ var ShoppingCart = function (model, element, currenUser){
     
 
     var shoppingCart = model.returnShoppingCart(currenUser);
-    var ost = shoppingCart;
+  
     //console.log("current user i shoppingcart: "+ currenUser)
-    var totalPrice = 0
+    //var totalPrice = 0
     //console.log(shoppingCart.length)
-    element.innerHTML = "Clear"
-    var counter = true;
+    //var counter = true;
     //console.log(shoppingCart.length)
 
     for (var i=0; i < shoppingCart.length; i++){
