@@ -128,18 +128,20 @@ var ShoppingModel = function () {
       })
     });
   }
+
   this.getFilteredGroceries = function(){
 
     return allGroceriesDb.filter(function(g){
       //console.log("gggge"+g)
       var found = true;
-      if(!searchFilter == ""){
+      if(searchFilter != ""){
         found = false;
-        //console.log(g)
-        if(g.title.indexOf(searchFilter) != -1){
+        var product = g.title.toLowerCase()
+        if(product.indexOf(searchFilter) != -1){
           found = true
+          console.log(g.title)
         }
-        return g.title == searchFilter && found;
+        return found;
       }
       else{
         return found

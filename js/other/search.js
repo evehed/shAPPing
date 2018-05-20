@@ -14,6 +14,7 @@ var Search = function (model, element){
 
 
   //console.log(element)
+  model.addObserver(this);
 
   this.update = function(){
 
@@ -22,7 +23,7 @@ var Search = function (model, element){
     }
     //var groceriesArray = model.getAllGroceries()
     var filterGroceries = model.getFilteredGroceries();
-    //console.log("efter filtering"+filterGroceries)
+    console.log("efter filtering: " + filterGroceries)
     filterGroceries.forEach(function(g){
 
 
@@ -47,6 +48,5 @@ var Search = function (model, element){
     })
   }
   this.update();
-  model.addObserver(this);
   //model.getFilteredGroceries("hello");
 }
