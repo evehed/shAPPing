@@ -111,6 +111,8 @@ function start() {
 	cartElement.style.display = "none";
 	navBarElement.style.display = "none";
 	signUpElement.style.display = "none";
+	loginInfoElement.style.display = "none";
+	signUpInfoElement.style.display = "none";
 	loginElement.style.display = "block";
 
 
