@@ -28,150 +28,144 @@
 </head>
 
 <body style="overflow-y: scroll;">
-<div class="container mx-auto">
+  <div class="container mx-auto">
 
-  <!--Potential Log-in-->
-  <div class="container" id="logIn.html">
-    <h5 class="center header">Login</h5>
-    <br>
-    <div id="login" class="col-10 mx-auto">
-    <form class="form-signin">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+    <!--Potential Log-in-->
+    <div class="container" id="logIn.html">
+      <h5 class="center header">Login</h5>
       <br>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
-      <div class="checkbox">
-        <label>
-          <input value="remember-me" type="checkbox"> Remember me
-        </label>
+      <div id="login" class="col-10 mx-auto">
+        <form class="form-signin">
+          <h2 class="form-signin-heading">Please sign in</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+          <br>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+          <br>
+          <button id="loginBtn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" onclick="signUpPage()">Sign up</button>
+        <br>
+        <p class="text-center alert-danger" id="loginInfo"></p>
       </div>
-     
-      <button id="loginBtn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" onclick="signUpPage()">Sign up</button>
-    <br>
-    <p class="text-center alert-danger" id="loginInfo"></p>
-  </div>
-</div>
+    </div>
 
-  <div class="container" id="signUp.html">
-    <h5 class="center header">Sign up</h5>
-    <br>
-    <div id="signup" class="col-10 mx-auto">
-    <form class="form-signup">
-      <h2 class="form-signin-heading">Please sign up</h2>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input id="inputEmailSignUp" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+    <div class="container" id="signUp.html">
+      <h5 class="center header">Sign up</h5>
       <br>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input id="inputPasswordSignUp" class="form-control" placeholder="Password" required="" type="password">
-    </form>
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" onclick="signUpUser()">Sign up</button>
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" onclick="loginPage()">Back</button>
-    <br>
-    <p class="text-center alert-danger" id="signUpInfo"></p>
-  </div>
-</div>
-
-
-  <div id="navBar.html">
-    <!-- Navigator -->
-    <div class="navbar fixed-bottom navbar-light bg-light">
-      <a class="nav-item nav-link" href="#" onclick="scanPage()">
-        <i class="material-icons">speaker_phone</i>
-      </a>
-      <a class="nav-item nav-link" href="#" onclick="cartPage()">
-        <i class="material-icons">shopping_cart</i>
-      </a>
-      <a class="nav-item nav-link" href="#" onclick="searchPage()">
-        <i class="material-icons">search</i>
-      </a>
-      <a class="nav-item nav-link" href="#" onclick="payPage()">
-        <i class="material-icons">payment</i>
-      </a>
-      <a id="logoutBtn" class="nav-item nav-link" href="#">
-        <i class="material-icons">power_settings_new</i>
-      </a>
-
-    </div>
-  </div>
-
-  <!-- Scan product -->
-  <div id="scanProduct.html">
-    <h5 class="center header"> Scan a product</h5>
-    <div id="scanProduct">
-    </div>
-  </div>
-
-  <!-- Shopping cart -->
-  <div id="shoppingCart.html">
-    <h5 class="center header">Shopping cart</h5>
-    <div id="shoppingCart">
-    </div>
-  </div>
-
-  <!-- Search -->
-  <div id="search.html">
-    <h5 class="center header"> Search a product</h5>
-    <input class="form-control col-10 mx-auto" type="search" id="myInput" placeholder="Search" style="margin: auto; display: block;"
-      onchange="model.setSearchFilter(this.value);"></input>
-    <div id="search">
-    </div>
-  </div>
-
-  <!-- Checkout -->
-  <div id="pay.html">
-    <div class="container">
-    <h5 class="center header">Checkout</h5>
-    <div id="checkoutContent" class="col-10 mx-auto">
-    <h6>Products</h6>
-    <ons-card id="checkoutProducts" class="col-12 mx-auto">
-      <div class="row p-0 m-0">
-        <p class="col-8 m-0">Product</p>
-        <p class="col-4 m-0">Price</p>
+      <div id="signup" class="col-10 mx-auto">
+        <form class="form-signup">
+          <h2 class="form-signin-heading">Please sign up</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input id="inputEmailSignUp" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+          <br>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input id="inputPasswordSignUp" class="form-control" placeholder="Password" required="" type="password">
+        </form>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" onclick="signUpUser()">Sign up</button>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" onclick="loginPage()">Back</button>
+        <br>
+        <p class="text-center alert-danger" id="signUpInfo"></p>
       </div>
-      <hr>
-      <div id="productsContent">
+    </div>
+
+
+    <div id="navBar.html">
+      <!-- Navigator -->
+      <div class="navbar fixed-bottom navbar-light bg-light">
+        <a class="nav-item nav-link" href="#" onclick="scanPage()">
+          <i class="material-icons">speaker_phone</i>
+        </a>
+        <a class="nav-item nav-link" href="#" onclick="cartPage()">
+          <i class="material-icons">shopping_cart</i>
+        </a>
+        <a class="nav-item nav-link" href="#" onclick="searchPage()">
+          <i class="material-icons">search</i>
+        </a>
+        <a class="nav-item nav-link" href="#" onclick="payPage()">
+          <i class="material-icons">payment</i>
+        </a>
+        <a id="logoutBtn" class="nav-item nav-link" href="#">
+          <i class="material-icons">power_settings_new</i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scan product -->
+    <div id="scanProduct.html">
+      <h5 class="center header"> Scan a product</h5>
+      <div id="scanProduct">
+      </div>
+    </div>
+
+    <!-- Shopping cart -->
+    <div id="shoppingCart.html">
+      <h5 class="center header">Shopping cart</h5>
+      <div id="shoppingCart">
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div id="search.html">
+      <h5 class="center header"> Search a product</h5>
+      <input class="form-control col-10 mx-auto" type="search" id="myInput" placeholder="Search" style="margin: auto; display: block;"
+        onchange="model.setSearchFilter(this.value);"></input>
+      <div id="search">
+      </div>
+    </div>
+
+    <!-- Checkout -->
+    <div id="pay.html">
+      <div class="container">
+        <h5 class="center header">Checkout</h5>
+        <div id="checkoutContent" class="col-10 mx-auto">
+          <h6>Products</h6>
+          <ons-card id="checkoutProducts" class="col-12 mx-auto">
+            <div class="row p-0 m-0">
+              <p class="col-8 m-0">Product</p>
+              <p class="col-4 m-0">Price</p>
+            </div>
+            <hr>
+            <div id="productsContent">
+            </div>
+          </ons-card>
+          <h6>User info</h6>
+          <div id="checkoutUser">
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" id="checkoutPay" onclick="payMessage()">Pay</button>
         </div>
-    </ons-card>
-    <h6>User info</h6>
-    <div id="checkoutUser">
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" id="checkoutPay" onclick= "payMessage()">Pay</button>
-  </div>
-  </div>
-  </div>
-
-
-  <div id="productInfo.html">
-    <h5 class="center header">Product details</h5>
-    <div class="row mx-auto">
-      <i class="col-2 material-icons" onclick="searchPage()">arrow_back_ios</i>
-      <h6 class="col-8 center">Product info</h1>
+      </div>
     </div>
 
-    <div id="productInfo" class="col-11 mx-auto">
 
+    <div id="productInfo.html">
+      <h5 class="center header">Product details</h5>
+      <div class="row mx-auto">
+        <i class="col-2 material-icons" onclick="searchPage()">arrow_back_ios</i>
+        <h6 class="col-8 center">Product info</h1>
+      </div>
+
+      <div id="productInfo" class="col-11 mx-auto">
+
+      </div>
+    </div>
+
+    <!-- Har gjort 2 för testning. Vi ska bara ha en scanProduct sen-->
+    <div id="scanProduct1">
+      ScanProduct1
+    </div>
+    <div id="scanProduct2">
+      scanproduct2
     </div>
   </div>
-
-  <!-- Har gjort 2 för testning. Vi ska bara ha en scanProduct sen-->
-  <div id="scanProduct1">
-    ScanProduct1
   </div>
-  <div id="scanProduct2">
-    scanproduct2
-  </div>
-  </div>
-</div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
- <script src="cordova.js"></script>
+  <script src="cordova.js"></script>
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script src="js/model/shoppingModel.js"></script>
 
