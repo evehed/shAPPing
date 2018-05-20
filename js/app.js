@@ -69,11 +69,11 @@ function signUpUser() {
 		// Display error message
 		signUpInfoElement.style.display = "block"
 
-		if(e.code === "auth/email-already-in-use"){
+		if (e.code === "auth/email-already-in-use") {
 			signUpInfoElement.innerHTML = "Email already exists, try another one!"
-		} else if (e.code === "auth/weak-password"){
+		} else if (e.code === "auth/weak-password") {
 			signUpInfoElement.innerHTML = "Password should be at least 6 characters!"
-		} else if (e.code === "auth/network-request-failed"){
+		} else if (e.code === "auth/network-request-failed") {
 			loginInfoElement.innerHTML = "No internet access!"
 			alert("No internet access!")
 		}
@@ -133,18 +133,19 @@ function login() {
 			// Display error message
 			loginInfoElement.style.display = "block"
 
-			if(e.code === "auth/invalid-email"){
+			if (e.code === "auth/invalid-email") {
 				loginInfoElement.innerHTML = "Invalid email, try again!"
-			} else if (e.code === "auth/user-not-found"){
+			} else if (e.code === "auth/user-not-found") {
 				loginInfoElement.innerHTML = "User doesn't exist,try again!"
-			} else if (e.code === "auth/wrong-password"){
+			} else if (e.code === "auth/wrong-password") {
 				loginInfoElement.innerHTML = "Wrong password, try again!"
-			} else if (e.code === "auth/network-request-failed"){
+			} else if (e.code === "auth/network-request-failed") {
 				loginInfoElement.innerHTML = "No internet access!"
 				alert("No internet access!")
 			}
-			
-			console.log(e)});
+
+			console.log(e)
+		});
 	})
 }
 
@@ -163,7 +164,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
 		signUpInfoElement.style.display = "none"
 		signUpInfoElement.innerHTML = ''
-		
+
 		console.log("current user: uid " + currenUser.uid + ' email: ' + currenUser.email)
 		enterApp()
 
@@ -187,7 +188,7 @@ function enterApp() {
 	loginElement.style.display = "none"
 	navBarElement.style.display = "flex";
 	model.setCurrentUser(currenUser);
-	
+
 	searchPage()
 }
 
@@ -212,7 +213,7 @@ function searchPage() {
 	var pay = new Pay(model, payProductsElement, payUserElement, currentUser)
 	var shoppingCart = new ShoppingCart(model, printCart, currenUser)
 	//console.log("nu körs search")
-	
+
 
 	searchElement.style.display = "block";
 	scanElement.style.display = "none";
@@ -242,7 +243,7 @@ function scanPage() {
 }
 
 function payPage() {
-	
+
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "block";
@@ -255,7 +256,7 @@ function payPage() {
 
 }
 function cartPage() {
-	
+
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -283,32 +284,17 @@ function productInfoPage(g) {
 
 }
 
-// function catchAddToCart(id) {
-// 	model.addToCart(id)
-// }
 
-// function processAddToCartPromise (param) {
-//     if (addToCartBool === true) {
-//     	var successMsgElement = document.getElementById("success-message");
-//     	successMsgElement.innerHTML = "Successfully added to cart!"
-//     	successMsgElement.style.display = "block";
-//     }
-//     else {
+function payMessage() {
+	var shoppingCart = model.returnShoppingCart()
 
-//     }
-
-// }
+	if (shoppingCart.length > 0) {
+		ons.notification.alert({ message: 'You paid: ' + model.getTotalPrice() + ' kr.', title: 'Congratulation!' })
+	} else {
+		ons.notification.alert({ message: 'Put a product in the cart and come back.', title: 'Shopping cart is empty!' })
+	}
+}
 
 
 
-
-
-
-start()
-
-// var beaconApp = new BeaconApp(model);
-
-// var searchElement = document.getElementById("search.html")
-// searchElement.addEventListener("click", searchPage);
-// var scanElement = document.getElementById("scanProduct.html")
-// scanElement.addEventListener("click", scanPage);
+	start()
