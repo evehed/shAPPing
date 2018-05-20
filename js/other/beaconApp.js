@@ -216,7 +216,7 @@ var BeaconApp = function (model, element){
 		window.locationManager = cordova.plugins.locationManager
 
 		// Start tracking beacons!
-		element.innerHTML = "Scan a product"
+		element.innerHTML = <h5 class="center header"> Scan a product</h5>
 		app.startScanForBeacons()
 		//app.initialize()
 	}
