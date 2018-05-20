@@ -43,11 +43,13 @@ var signUpInfoElement = document.getElementById("signUpInfo")
 var scanProduct1 = document.getElementById("scanProduct1")
 var scanProduct2 = document.getElementById("scanProduct2")
 
-// Login, Logout
+// Login, Logout, Sign up
 var logoutBtn = document.getElementById("logoutBtn");
 var inputEmail = document.getElementById("inputEmail");
 var inputPassword = document.getElementById("inputPassword");
 var loginBtn = document.getElementById("loginBtn");
+var emailSignUp = document.getElementById("inputEmailSignUp")
+var passwordSignup = document.getElementById("inputPasswordSignUp")
 
 
 // Show sign up page
@@ -59,11 +61,11 @@ function signUpPage() {
 
 // Sign up a user on firebase
 function signUpUser() {
-	this.emailIn = document.getElementById("inputEmailSignUp").value
-	this.passwordIn = document.getElementById("inputPasswordSignUp").value
+	const email = emailSignUp.value
+	const password = passwordSignup.value
 
 	//Create new user with firebase
-	const promise = firebase.auth().createUserWithEmailAndPassword(this.emailIn, this.passwordIn)
+	const promise = firebase.auth().createUserWithEmailAndPassword(email, password)
 	promise.catch(e => {
 
 		// Display error message
@@ -179,6 +181,8 @@ logoutBtn.addEventListener("click", e => {
 	firebase.auth().signOut();
 	inputEmail.value = ''
 	inputPassword.value = ''
+	inputEmailSignUp.value = ''
+	inputPasswordSignUp.value = ''
 	loginPage()
 })
 
