@@ -27,7 +27,6 @@ var ShoppingModel = function () {
 
   }];
 
-  var modelCart = [];
 
   var notifyObservers = function(obj) {
     for(var i=0; i<observers.length; i++){
@@ -55,7 +54,6 @@ var ShoppingModel = function () {
       .add(product)
       .then(function() {
         //resolved promise
-        modelCart.push(product)
         //console.log("TTTTT")
         var successMsgElement = document.getElementById("success-message");
         successMsgElement.innerHTML = "Successfully added to cart!"
@@ -170,12 +168,13 @@ var ShoppingModel = function () {
   this.getFilteredGroceries = function(){
 
     return allGroceriesDb.filter(function(g){
+      var searchFilterLowerCase = searchFilter.toLowerCase()
       //console.log("gggge"+g)
       var found = true;
       if(searchFilter != ""){
         found = false;
         var product = g.title.toLowerCase()
-        if(product.indexOf(searchFilter) != -1){
+        if(product.indexOf(searchFilterLowerCase) != -1){
           found = true
           console.log(g.title)
         }
