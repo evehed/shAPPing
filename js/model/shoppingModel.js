@@ -127,6 +127,18 @@ var ShoppingModel = function () {
     })
     return result;
   }
+
+  this.getScannedProduct = function(scannedId){
+    var result;
+    allGroceriesDb.forEach(function(grocery){
+      if(grocery.id == scannedId){
+        result = grocery;
+      }
+    })
+    return result;
+
+  }
+
   this.getProductInfo = function(id){
     var result;
     allGroceriesDb.forEach(function(grocery){
@@ -149,6 +161,7 @@ var ShoppingModel = function () {
       })
     });
   }
+
 
   this.getFilteredGroceries = function(){
 

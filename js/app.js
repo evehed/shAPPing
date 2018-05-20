@@ -12,6 +12,8 @@ firebase.initializeApp(config);
 
 //We instantiate our model
 this.model = new ShoppingModel();
+var scanElement = document.getElementById("scanProduct.html")
+
 
 // Current user
 var currenUser;
@@ -19,7 +21,7 @@ var currenUser;
 // References
 var searchElement = document.getElementById("search.html")
 var printSearch = document.getElementById("search")
-var scanElement = document.getElementById("scanProduct.html")
+
 
 var payElement = document.getElementById("pay.html")
 var payProductsElement = document.getElementById("productsContent")
@@ -37,6 +39,7 @@ var loginInfoElement = document.getElementById("loginInfo")
 var signUpInfoElement = document.getElementById("signUpInfo")
 
 // Scan product 1 & 2
+//var scanPage = document.getElementById("scanProduct.html")
 var scanProduct1 = document.getElementById("scanProduct1")
 var scanProduct2 = document.getElementById("scanProduct2")
 
@@ -232,6 +235,9 @@ function scanPage() {
 	loginElement.style.display = "none"
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
+	var beaconApp = new BeaconApp(model, scanElement)
+	beaconApp.startScanning();
+
 
 }
 

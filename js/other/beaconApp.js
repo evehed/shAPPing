@@ -1,22 +1,23 @@
-var BeaconApp = function (model){
+var BeaconApp = function (model, element){
 
 	// JavaScript code for the Arduino Beacon example app.
 
 	// Application object.
 	var app = {}
 
+
 	// Regions that define which page to show for each beacon.
 	app.beaconRegions =
 	[
 		{
-			id: 'page-feet',
+			id: 'milk',
 			uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
 			major: 56506,
 			minor: 14941,
 
 		},
 		{
-			id: 'page-product',
+			id: 'bulgur',
 			uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
 			major: 33349,
 			minor: 27161
@@ -33,10 +34,10 @@ var BeaconApp = function (model){
 
 	app.currentPage = 'page-default'
 
-	console.log('MAJS')
 
 	app.initialize = function()
-	{
+	{	
+		console.log('MAJS')
 		document.addEventListener(
 			'deviceready',
 			app.onDeviceReady,
@@ -124,44 +125,99 @@ var BeaconApp = function (model){
 
 
 		//console.log('ranged beacon: ' + pageId + ' ' + beacon.proximity)
+		//if ((beacon.proximity == 'ProximityImmediate' )
+		//&& app.currentPage == 'page-default')
+		 //app.currentPage == pageId)
 
 		// If the beacon is close and represents a new page, then show the page.
-		if ((beacon.proximity == 'ProximityNear' )
-		&& app.currentPage == 'page-default')
+		if (beacon.proximity == 'ProximityImmediate' || beacon.proximity == 'ProximityNear')
 		{
-			app.gotoPage(pageId)
-			console.log('Bajs')
+			//app.gotoPage(pageId)
+			//Milk id 49993
+			//bulgur id 537176
+			var productInfo = model.getScannedProduct(537176)
+			console.log(productInfo)
+
+			app.printPage(productInfo)
+			//model.setPage()
 			return
 		}
 
 	// If the beacon represents the current page but is far away,
 	// then show the default page.
-		if ((beacon.proximity == 'ProximityFar')
-			&& app.currentPage == pageId)
+		if (beacon.proximity == 'ProximityFar')
 		{
-			app.gotoPage('page-default')
-			console.log('Macka	')
+			//sapp.scanForNewProduct();
+
+			//app.gotoPage('page-default')
+			//console.log('Macka	')
 			return
 		}
 	}
 
-	app.gotoPage = function(pageId)
-	{
-		app.hidePage(app.currentPage)
-		app.showPage(pageId)
-		app.currentPage = pageId
+	app.printPage = function(g){
+		if (g !== "") {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+            var groceryNode = document.createElement("ons-card");
+
+            //var string = "productInfoPage("+g+")";
+            //groceryNode.setAttribute("onclick","productInfoPage("+g.id+")");
+            var groceriesTitle = document.createElement("h4");
+            var groceriesSection = document.createElement("h6");
+            var groceriesDescription = document.createElement("h8");
+            var addButton = document.createElement("button");
+            addButton.className = "btn btn-outline-success";
+            addButton.setAttribute("onclick", "model.addToCart("+g.id+")");
+            //addButton.setAttribute("onclick", "catchAddToCart("+g.id+")");
+            var successMessage = document.createElement("p");
+            successMessage.setAttribute("id", "success-message");
+            successMessage.className = "alert alert-success";
+            successMessage.style.display = "none";
+
+           	//var clearButton = document.createElement("button");
+            //clearButton.className = "btn btn-outline-success";
+            //clearButton.setAttribute("onclick", "model.restartScan(this)";
+
+
+            //console.log("gid!! " + g.id)
+
+            var textNodeTitle = document.createTextNode(g.title);
+            var textNodeSection = document.createTextNode("Section: "+ g.section);
+            var textNodeDescription = document.createTextNode(g.description);
+            var textNodedeButton = document.createTextNode("Add to cart");
+
+
+            groceriesDescription.appendChild(textNodeDescription);
+            groceriesTitle.appendChild(textNodeTitle);
+            groceriesSection.appendChild(textNodeSection);
+            groceriesTitle.setAttribute("title", g.title);
+            addButton.appendChild(textNodedeButton);
+
+            groceryNode.appendChild(groceriesTitle);
+            groceryNode.appendChild(groceriesSection);
+            groceryNode.appendChild(groceriesDescription);
+            groceryNode.appendChild(addButton)
+            groceryNode.appendChild(successMessage)
+            //groceryNode.appendChild(clearButton)
+            element.appendChild(groceryNode);
+        }
+
+
+
 	}
 
-	app.showPage = function(pageId)
-	{
-		document.getElementById(pageId).style.display = 'block'
-	}
-
-	app.hidePage = function(pageId)
-	{
-		document.getElementById(pageId).style.display = 'none'
-	}
+	
 
 	// Set up the application.
-	app.initialize()
+
+	this.startScanning = function(){
+		window.locationManager = cordova.plugins.locationManager
+
+		// Start tracking beacons!
+		element.innerHTML = "Scan a product"
+		app.startScanForBeacons()
+		//app.initialize()
+	}
 }
