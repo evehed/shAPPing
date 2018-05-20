@@ -35,14 +35,18 @@ var ShoppingModel = function () {
     }
   }
 
-  this.setCurrentUser = function(id){
-    currentUserModel = currentUser
-
-  }
-
   this.addObserver = function(observer) {
     observers.push(observer);
   }
+
+  this.clearObservers = function() {
+    observers.length = 0
+  }
+
+  this.setCurrentUser = function(id){
+    currentUserModel = currentUser
+  }
+
 
   this.addToCart = function (id) {
     var product = _this.getProductInfo(id)

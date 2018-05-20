@@ -26,7 +26,6 @@ var Search = function (model, element){
     //console.log("efter filtering: " + filterGroceries)
     filterGroceries.forEach(function(g){
 
-
       var groceryNode = document.createElement("ons-card");
       groceryNode.setAttribute("id",g.id);
       groceryNode.setAttribute("class", "col-10 mx-auto")
