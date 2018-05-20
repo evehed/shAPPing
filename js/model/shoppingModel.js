@@ -47,25 +47,45 @@ var ShoppingModel = function () {
   this.addToCart = function (id) {
     var product = _this.getProductInfo(id)
     //console.log("asdasdasd" + currentUserModel.uid)
-    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').add(product)
-    modelCart.push(product)
-    notifyObservers();
-    return true
+    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart')
+      .add(product)
+      .then(function() {
+        //resolved promise
+        modelCart.push(product)
+        //console.log("TTTTT")
+        var successMsgElement = document.getElementById("success-message");
+        successMsgElement.innerHTML = "Successfully added to cart!"
+        successMsgElement.style.display = "block";
+        //notifyObservers();
+      }, function() {
+        //rejected promise
+        var successMsgElement = document.getElementById("success-message");
+        successMsgElement.innerHTML = "Not successful in adding to cart :("
+        successMsgElement.className = "alert alert-danger";     
+        successMsgElement.style.display = "block";    
+        //notifyObservers();    
+      });
+
   }
 
-
   async function removeFromCart(product){
+    var newShoppingCart = []
     var wait = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(shoppingCartDb) {
       shoppingCartDb.forEach(function(doc) {
         if(doc.data().id == product){
-          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete();
+          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete()
+          .then(function() {
+            shoppingCart = shoppingCart.filter(obj => obj.id != product);
+            notifyObservers()
+          }, function() {
+            console.log("removeFromCart failade somehow")
+          });;
         }
       })
     })
-
-    notifyObservers()
   }
+
   /*
   const removeFromCart = async message => {
     
@@ -125,6 +145,7 @@ var ShoppingModel = function () {
     .then(function(query) {
       query.forEach(function(doc) {
         allGroceriesDb.push(doc.data())
+        notifyObservers();
       })
     });
   }
@@ -172,7 +193,7 @@ var ShoppingModel = function () {
     });
 
     //console.log("shopping caaaary:" + JSON.stringify(shoppingCart))
-    console.log(shoppingCart)
+    //console.log(shoppingCart)
     notifyObservers()
   }
 

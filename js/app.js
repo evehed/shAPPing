@@ -277,14 +277,25 @@ function productInfoPage(g) {
 
 }
 
-function catchAddToCart(id) {
-	//console.log("lTTTTTTTTTTT")
-    model.addToCart(id)
-	//console.log("WWWWWWWWW")
-    var successMsgElement = document.getElementById("success-message");
-    successMsgElement.innerHTML = "Successfully added to cart!"
-    successMsgElement.style.display = "block";
-}
+// function catchAddToCart(id) {
+// 	model.addToCart(id)
+// }
+
+// function processAddToCartPromise (param) {
+//     if (addToCartBool === true) {
+//     	var successMsgElement = document.getElementById("success-message");
+//     	successMsgElement.innerHTML = "Successfully added to cart!"
+//     	successMsgElement.style.display = "block";
+//     }
+//     else {
+
+//     }
+
+// }
+
+
+
+
 
 
 start()
