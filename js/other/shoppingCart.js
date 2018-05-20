@@ -35,8 +35,9 @@ var ShoppingCart = function (model, element, currenUser){
 
     //  TITLE INSERT
       var titleDiv = document.createElement("div")
-      titleDiv.className = "col-7"
+      titleDiv.className = "col-6"
       var p = document.createElement("p")
+      p.className = "m-0"
       var title = document.createTextNode(shoppingCart[i].title)
       p.append(title)
       titleDiv.appendChild(p)
@@ -44,8 +45,9 @@ var ShoppingCart = function (model, element, currenUser){
       //
       // // PRICE INSERT
       var priceDiv = document.createElement("div")
-      priceDiv.className = "col-3"
+      priceDiv.className = "col-4"
       var p = document.createElement("p")
+      p.className = "m-0"
       var price = document.createTextNode(shoppingCart[i].price + " kr")
       p.appendChild(price)
       priceDiv.appendChild(p)

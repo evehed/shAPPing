@@ -52,21 +52,23 @@ var Pay = function (model, productsElement, userElement, currentUser) {
     var userInfoDiv = document.createElement("ons-card")
     userInfoDiv.className = "col-12 text-center mx-auto"
     var p = document.createElement("p")
+    p.className = "m-0"
     var userEmail = document.createTextNode("Email: " + currentUser.email)
     p.appendChild(userEmail)
-    userInfoDiv.appendChild(userEmail)
+    userInfoDiv.appendChild(p)
     userElement.appendChild(userInfoDiv)
 
     // Total price
     var totalPriceDiv = document.createElement("ons-card")
-    totalPriceDiv.style.backgroundColor = "lightblue"
+    totalPriceDiv.style.backgroundColor = "rgba(220,20,60,0.55)"
+    totalPriceDiv.style.fontWeight = "lighter"
     totalPriceDiv.className = "col-12 text-center mx-auto"
-    var strong = document.createElement("STRONG")
+   // var strong = document.createElement("STRONG")
     var p = document.createElement("p")
-    p.className = "p-0 m-0"
+    p.className = "p-0 m-0 text-white"
     var totalPrice = document.createTextNode("To pay: " + model.getTotalPrice() + " kr")
-    strong.appendChild(totalPrice)
-    p.appendChild(strong)
+    p.appendChild(totalPrice)
+   // p.appendChild(strong)
     totalPriceDiv.appendChild(p)
     row.appendChild(totalPriceDiv)
 

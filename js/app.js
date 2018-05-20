@@ -140,7 +140,7 @@ function login() {
 			if (e.code === "auth/invalid-email") {
 				loginInfoElement.innerHTML = "Invalid email, try again!"
 			} else if (e.code === "auth/user-not-found") {
-				loginInfoElement.innerHTML = "User doesn't exist,try again!"
+				loginInfoElement.innerHTML = "User doesn't exist, try again!"
 			} else if (e.code === "auth/wrong-password") {
 				loginInfoElement.innerHTML = "Wrong password, try again!"
 			} else if (e.code === "auth/network-request-failed") {

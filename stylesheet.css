@@ -17,3 +17,43 @@
     width: 100%;
     object-fit: cover
 }
+
+
+#search.html{
+    background-image: url("./assets/milk.jpeg") !important;
+    background-size: contain;
+}
+
+body{
+    background-image: url("./assets/bg.png");
+    background-size: cover;
+    align-content: center;
+    
+}
+
+
+
+button{
+    font-family: 'Baloo Chettan', sans-serif !important
+}
+
+i{
+    color: red;
+}
+
+ons-card {
+    font-family: 'Varela Round' !important
+}
+ons-card p{
+    font-family: 'Varela Round' !important
+
+}
+
+h1, h2, h3, h4, h5, h6, h7, h8{
+    font-family: 'Baloo Chettan', sans-serif 
+}
+
+*{
+    font-family: 'Baloo Chettan', sans-serif;
+
+}

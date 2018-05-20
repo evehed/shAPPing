@@ -32,6 +32,7 @@ var Search = function (model, element){
       groceryNode.setAttribute("value",g);
       groceryNode.setAttribute("onclick","productInfoPage("+g.id+")");
       var groceriesTitle = document.createElement("h4");
+      groceriesTitle.style.fontWeight = "100"
       var groceriesSection = document.createElement("h6");
       var textNodeTitle = document.createTextNode(g.title);
       //console.log("titlaaarna: "+g.title)

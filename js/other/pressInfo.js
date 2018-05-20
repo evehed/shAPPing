@@ -21,11 +21,12 @@ var PressInfo = function (model, element){
             //groceryNode.setAttribute("onclick","productInfoPage("+g.id+")");
             let groceriesTitle = document.createElement("h4");
             let groceriesSection = document.createElement("h6");
+            groceriesSection.style.fontWeight = "bolder";
 
             let groceriesLocation = document.createElement("h6")
-            //groceriesLocation.style.fontStyle = "italic";
+            groceriesLocation.style.fontWeight = "bolder";
 
-            let groceriesDescription = document.createElement("h8")
+            let groceriesDescription = document.createElement("p")
             let addButton = document.createElement("button");
             addButton.className = "btn btn-outline-success";
             addButton.setAttribute("onclick", "model.addToCart("+g.id+")");
