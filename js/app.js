@@ -20,7 +20,11 @@ var currenUser;
 var searchElement = document.getElementById("search.html")
 var printSearch = document.getElementById("search")
 var scanElement = document.getElementById("scanProduct.html")
+
 var payElement = document.getElementById("pay.html")
+var payProductsElement = document.getElementById("productsContent")
+var payUserElement = document.getElementById("checkoutUser")
+
 var cartElement = document.getElementById("shoppingCart.html")
 var printCart = document.getElementById("shoppingCart")
 var loginElement = document.getElementById("logIn.html")
@@ -202,7 +206,7 @@ function loginPage() {
 function searchPage() {
 
 	var search = new Search(model, printSearch)
-	var pay = new Pay(model, payElement)
+	var pay = new Pay(model, payProductsElement, payUserElement, currentUser)
 	var shoppingCart = new ShoppingCart(model, printCart, currenUser)
 	//console.log("nu körs search")
 	
