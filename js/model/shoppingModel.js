@@ -47,10 +47,25 @@ var ShoppingModel = function () {
   this.addToCart = function (id) {
     var product = _this.getProductInfo(id)
     //console.log("asdasdasd" + currentUserModel.uid)
-    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').add(product)
-    modelCart.push(product)
-    notifyObservers();
-    return true
+    firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart')
+      .add(product)
+      .then(function() {
+        //resolved promise
+        modelCart.push(product)
+        console.log("TTTTT")
+        var successMsgElement = document.getElementById("success-message");
+        successMsgElement.innerHTML = "Successfully added to cart!"
+        successMsgElement.style.display = "block";
+        //notifyObservers();
+      }, function() {
+        //rejected promise
+        var successMsgElement = document.getElementById("success-message");
+        successMsgElement.innerHTML = "Not successful in adding to cart :("
+        successMsgElement.className = "alert alert-danger";     
+        successMsgElement.style.display = "block";    
+        //notifyObservers();    
+      });
+
   }
 
 

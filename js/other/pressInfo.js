@@ -24,8 +24,8 @@ var PressInfo = function (model, element){
             var groceriesDescription = document.createElement("h8");
             var addButton = document.createElement("button");
             addButton.className = "btn btn-outline-success";
-            // addButton.setAttribute("onclick", "model.addToCart("+g.id+")");
-            addButton.setAttribute("onclick", "catchAddToCart("+g.id+")");
+            addButton.setAttribute("onclick", "model.addToCart("+g.id+")");
+            //addButton.setAttribute("onclick", "catchAddToCart("+g.id+")");
             var successMessage = document.createElement("p");
             successMessage.setAttribute("id", "success-message");
             successMessage.className = "alert alert-success";
