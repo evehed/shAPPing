@@ -14,7 +14,7 @@ var ShoppingCart = function (model, element, currenUser){
     var ost = shoppingCart;
     //console.log("current user i shoppingcart: "+ currenUser)
     var totalPrice = 0
-    //console.log(shoppingCart.length)
+    console.log(shoppingCart.length)
     element.innerHTML = "Clear"
     var counter = true;
     //console.log(shoppingCart.length)

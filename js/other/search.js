@@ -23,7 +23,7 @@ var Search = function (model, element){
     }
     //var groceriesArray = model.getAllGroceries()
     var filterGroceries = model.getFilteredGroceries();
-    console.log("efter filtering: " + filterGroceries)
+    //console.log("efter filtering: " + filterGroceries)
     filterGroceries.forEach(function(g){
 
 

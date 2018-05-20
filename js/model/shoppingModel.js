@@ -68,19 +68,24 @@ var ShoppingModel = function () {
 
   }
 
-
   async function removeFromCart(product){
+    var newShoppingCart = []
     var wait = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(shoppingCartDb) {
       shoppingCartDb.forEach(function(doc) {
         if(doc.data().id == product){
-          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete();
+          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete()
+          .then(function() {
+            shoppingCart = shoppingCart.filter(obj => obj.id != product);
+            notifyObservers()
+          }, function() {
+            console.log("removeFromCart failade somehow")
+          });;
         }
       })
     })
-
-    notifyObservers()
   }
+
   /*
   const removeFromCart = async message => {
     
@@ -178,7 +183,7 @@ var ShoppingModel = function () {
     });
 
     //console.log("shopping caaaary:" + JSON.stringify(shoppingCart))
-    console.log(shoppingCart)
+    //console.log(shoppingCart)
     notifyObservers()
   }
 
