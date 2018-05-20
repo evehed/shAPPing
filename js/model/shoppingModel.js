@@ -52,7 +52,7 @@ var ShoppingModel = function () {
       .then(function() {
         //resolved promise
         modelCart.push(product)
-        console.log("TTTTT")
+        //console.log("TTTTT")
         var successMsgElement = document.getElementById("success-message");
         successMsgElement.innerHTML = "Successfully added to cart!"
         successMsgElement.style.display = "block";
@@ -145,6 +145,7 @@ var ShoppingModel = function () {
     .then(function(query) {
       query.forEach(function(doc) {
         allGroceriesDb.push(doc.data())
+        notifyObservers();
       })
     });
   }
