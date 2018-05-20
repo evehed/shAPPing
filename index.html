@@ -142,8 +142,7 @@
     <h6>User info</h6>
     <div id="checkoutUser">
     </div>
-   
-    <button class="btn btn-lg btn-primary btn-block" id="checkoutPay">Pay</button>
+    <button class="btn btn-lg btn-primary btn-block" id="checkoutPay" onclick= "ons.notification.alert({message: 'You paid: ' + model.getTotalPrice() + ' kr', title: 'Congratulation!'})">Pay</button>
   </div>
   </div>
   </div>
