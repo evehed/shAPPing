@@ -17,8 +17,10 @@ var ShoppingCart = function (model, element, currenUser){
     //console.log(shoppingCart.length)
     //var counter = true;
     //console.log(shoppingCart.length)
+    
 
     for (var i=0; i < shoppingCart.length; i++){
+      
       var card = document.createElement("ons-card")
       card.className = "col-10 mx-auto"
       var info = document.createElement("div")
@@ -67,6 +69,7 @@ var ShoppingCart = function (model, element, currenUser){
       // totalPrice += shoppingCart[i].price
       info.appendChild(row)
       card.appendChild(info)
+    
       element.appendChild(card)
       //console.log(element);
 

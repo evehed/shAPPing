@@ -7,6 +7,7 @@ var ShoppingModel = function () {
   var _this = this;
   var allGroceriesDb = []
   var currentUserModel;
+  var loading = document.getElementById("loading");
 
   var allGroceries = [{
     "id": 49993,
@@ -48,6 +49,7 @@ var ShoppingModel = function () {
 
 
   this.addToCart = function (id) {
+    activateLoader()
     var product = _this.getProductInfo(id)
     //console.log("asdasdasd" + currentUserModel.uid)
     firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart')
@@ -58,19 +60,21 @@ var ShoppingModel = function () {
         var successMsgElement = document.getElementById("success-message");
         successMsgElement.innerHTML = "Successfully added to cart!"
         successMsgElement.style.display = "block";
+        disableLoader()
         //notifyObservers();
       }, function() {
         //rejected promise
         var successMsgElement = document.getElementById("success-message");
         successMsgElement.innerHTML = "Not successful in adding to cart :("
         successMsgElement.className = "alert alert-danger";     
-        successMsgElement.style.display = "block";    
+        disableLoader()  
         //notifyObservers();    
       });
 
   }
 
   async function removeFromCart(product){
+    
     var newShoppingCart = []
     var wait = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(shoppingCartDb) {
@@ -79,6 +83,7 @@ var ShoppingModel = function () {
           firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete()
           .then(function() {
             shoppingCart = shoppingCart.filter(obj => obj.id != product);
+            disableLoader()
             notifyObservers()
           }, function() {
             console.log("removeFromCart failade somehow")
@@ -94,6 +99,7 @@ var ShoppingModel = function () {
   }*/
 
   this.runRemove = function(product){
+    activateLoader()
     removeFromCart(product)
   }
   /*
@@ -155,10 +161,12 @@ var ShoppingModel = function () {
   }
 
   this.getAllGroceriesDb = function(){
+    activateLoader()
     var getDatabaseInfo = firebase.firestore().collection("groceries").get()
     .then(function(query) {
       query.forEach(function(doc) {
         allGroceriesDb.push(doc.data())
+        disableLoader()
         notifyObservers();
       })
     });
@@ -166,7 +174,6 @@ var ShoppingModel = function () {
 
 
   this.getFilteredGroceries = function(){
-
     return allGroceriesDb.filter(function(g){
       var searchFilterLowerCase = searchFilter.toLowerCase()
       //console.log("gggge"+g)
@@ -205,6 +212,7 @@ var ShoppingModel = function () {
     .then(function(query) {
       query.forEach(function(doc) {
         shoppingCart.push(doc.data())
+        disableLoader()
       })
     });
 
@@ -214,13 +222,19 @@ var ShoppingModel = function () {
   }
 
   this.runShoppingCartLoader = function(){
+    activateLoader()
     loadShoppingCart();
   }
 
   this.returnShoppingCart = function(currentUser){
     return shoppingCart;
   }
-
+  var activateLoader = function(){
+    loading.style.display = "block";
+  }
+  var disableLoader = function(){
+    loading.style.display = "none";
+  }
 
     _this.getAllGroceriesDb();
 

@@ -33,6 +33,34 @@ body{
 button{
     font-family: 'Baloo Chettan', sans-serif !important
 }
+#loading {
+    margin:auto;
+    position:absolute;
+    display:block;
+    z-index: 1;
+    height: 4px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: none;
+    position: absolute;
+    content: "";
+    left: -200px;
+    top:0;
+    width: 200px;
+    height: 4px;
+    background-color: #60a6d4;
+    animation: loading 2s linear infinite;
+  }
+  
+  @keyframes loading {
+      from {left: -200px; width: 30%;}
+      50% {width: 30%;}
+      70% {width: 70%;}
+      80% { left: 50%;}
+      95% {left: 120%;}
+      to {left: 100%;}
+  }
 
 i{
     color: red;
