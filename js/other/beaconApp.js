@@ -37,7 +37,6 @@ var BeaconApp = function (model, element){
 
 	app.initialize = function()
 	{	
-		console.log('MAJS')
 		document.addEventListener(
 			'deviceready',
 			app.onDeviceReady,
@@ -59,6 +58,7 @@ var BeaconApp = function (model, element){
 
 	app.startScanForBeacons = function()
 	{
+
 		//console.log('startScanForBeacons')
 
 		// The delegate object contains iBeacon callback functions.
@@ -120,8 +120,8 @@ var BeaconApp = function (model, element){
 
 		// The region identifier is the page id.
 		var pageId = pluginResult.region.identifier
-		console.log('Bajs')
-		console.log(pageId)
+		//onsole.log('Bajs')
+		//console.log(pageId)
 
 
 		//console.log('ranged beacon: ' + pageId + ' ' + beacon.proximity)
@@ -156,6 +156,7 @@ var BeaconApp = function (model, element){
 	}
 
 	app.printPage = function(g){
+		console.log(g);
 		if (g !== "") {
             while (element.firstChild) {
                 element.removeChild(element.firstChild);
@@ -175,6 +176,10 @@ var BeaconApp = function (model, element){
             successMessage.setAttribute("id", "success-message");
             successMessage.className = "alert alert-success";
             successMessage.style.display = "none";
+            
+            var img = document.createElement("IMG")
+      		img.className = "productImg"
+      		img.setAttribute("src",g.img)
 
            	//var clearButton = document.createElement("button");
             //clearButton.className = "btn btn-outline-success";
@@ -197,6 +202,7 @@ var BeaconApp = function (model, element){
 
             groceryNode.appendChild(groceriesTitle);
             groceryNode.appendChild(groceriesSection);
+            groceryNode.appendChild(img)
             groceryNode.appendChild(groceriesDescription);
             groceryNode.appendChild(addButton)
             groceryNode.appendChild(successMessage)
@@ -205,6 +211,14 @@ var BeaconApp = function (model, element){
         }
 
 
+
+	}
+
+	app.temp = function(){
+		var productInfo = model.getScannedProduct(537176)
+		console.log(productInfo)
+
+		app.printPage(productInfo)
 
 	}
 
@@ -217,6 +231,7 @@ var BeaconApp = function (model, element){
 
 		// Start tracking beacons!
 		element.innerHTML = '<h5 class="center header"> Scan a product</h5>'
+		//app.temp();
 		app.startScanForBeacons()
 		//app.initialize()
 	}

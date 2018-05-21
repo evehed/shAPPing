@@ -65,24 +65,46 @@ var ShoppingModel = function () {
         successMsgElement.innerHTML = "Not successful in adding to cart :("
         successMsgElement.className = "alert alert-danger";     
         successMsgElement.style.display = "block";    
-        //notifyObservers();    
+        //notifyObservers();   
       });
 
   }
 
   async function removeFromCart(product){
     var newShoppingCart = []
+    var noSkip = true;
+    var noSkip2 = true;
+
     var wait = await firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').get()
     .then(function(shoppingCartDb) {
       shoppingCartDb.forEach(function(doc) {
         if(doc.data().id == product){
-          firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete()
-          .then(function() {
-            shoppingCart = shoppingCart.filter(obj => obj.id != product);
-            notifyObservers()
-          }, function() {
-            console.log("removeFromCart failade somehow")
-          });;
+          if(noSkip2){
+            noSkip2 = false;
+            firebase.firestore().doc('users/'+ currentUserModel.uid).collection('shoppingCart').doc(doc.id).delete()
+            .then(function() {
+              
+              var test = [];
+              
+              for(var i = 0; i < shoppingCart.length; i++)
+              {
+                if(shoppingCart[i].id == product && noSkip == true){
+                  //test = shoppingCart.splice(shoppingCart[i], 1);
+                  //console.log(shoppingCart)
+                  noSkip = false;
+                }
+                else{
+                  test.push(shoppingCart[i])
+                }
+              }
+              shoppingCart = test;
+              //shoppingCart = shoppingCart.filter(obj => obj.id != product);
+              notifyObservers()
+            }, function() {
+              console.log("removeFromCart failade somehow")
+            });;
+          }
+
         }
       })
     })
