@@ -109,6 +109,9 @@ var ShoppingCart = function (model, element, currenUser){
         amountDiv.appendChild(p)
         row.appendChild(amountDiv)
 
+        
+
+
         // // ADD TO TOTAL PRICE
         // totalPrice += shoppingCart[i].price
         info.appendChild(row)
