@@ -23,15 +23,14 @@ var ShoppingCart = function (model, element, currenUser){
     
 
     for (var i=0; i < shoppingCart.length; i++){
-<<<<<<< HEAD
-      
+
+      /*
       var card = document.createElement("ons-card")
       card.className = "col-10 mx-auto"
       var info = document.createElement("div")
       info.className = "col-12 mx-auto"
       var row = document.createElement("div")
-      row.className = "row"
-=======
+      row.className = "row"*/
       for(var k=0; k<shoppingCart.length; k++){
         if(shoppingCart[i].title == shoppingCart[k].title){
           counter = counter + 1;
@@ -42,7 +41,6 @@ var ShoppingCart = function (model, element, currenUser){
           skipper = true
         }
       }
->>>>>>> 1c8dd6b4ce23b4bf735b60dc3f2335af8b77b3b4
 
       if(skipper){
         //Do Nothing
@@ -63,16 +61,15 @@ var ShoppingCart = function (model, element, currenUser){
         img.setAttribute("src",shoppingCart[i].img)
         card.appendChild(img)
 
-<<<<<<< HEAD
-      // // ADD TO TOTAL PRICE
-      // totalPrice += shoppingCart[i].price
-      info.appendChild(row)
-      card.appendChild(info)
-    
-      element.appendChild(card)
-      //console.log(element);
-=======
-      //  TITLE INSERT
+
+        // // ADD TO TOTAL PRICE
+        // totalPrice += shoppingCart[i].price
+        //info.appendChild(row)
+        //card.appendChild(info)
+      
+        //element.appendChild(card)
+        //console.log(element);
+        //  TITLE INSERT
         var titleDiv = document.createElement("div")
         titleDiv.className = "col-6"
         var p = document.createElement("p")
@@ -123,7 +120,6 @@ var ShoppingCart = function (model, element, currenUser){
         //console.log(element);
 
       }
->>>>>>> 1c8dd6b4ce23b4bf735b60dc3f2335af8b77b3b4
 
     }
 
