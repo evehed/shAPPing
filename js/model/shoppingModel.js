@@ -249,7 +249,12 @@ var ShoppingModel = function () {
     loadShoppingCart();
   }
 
+  this.returner = function(){
+    return shoppingCart;
+  }
+
   this.returnShoppingCart = function(currentUser){
+    //var returnMe = setTimeout(this.returner(), 500)
     return shoppingCart;
   }
   var activateLoader = function(){

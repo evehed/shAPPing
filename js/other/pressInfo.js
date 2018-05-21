@@ -1,5 +1,7 @@
 var PressInfo = function (model, element){
     console.log("PressInfo skapad!")
+    model.addObserver(this)
+
   //Info is displayed when you scan a item
 
 
@@ -10,11 +12,12 @@ var PressInfo = function (model, element){
         var b = model.getAllGroceries()
         //console.log(b.length)
         // console.log("här är b"+b)
-         //console.log("här e g: "+g)
+        console.log(g)
         if (g !== "") {
-            while (element.firstChild) {
+            console.log(g)
+            /*while (element.firstChild) {
                 element.removeChild(element.firstChild);
-            }
+            }*/
             let groceryNode = document.createElement("ons-card");
 
             //var string = "productInfoPage("+g+")";
@@ -57,9 +60,9 @@ var PressInfo = function (model, element){
             groceryNode.appendChild(addButton)
             groceryNode.appendChild(successMessage)
             element.appendChild(groceryNode);
+            console.log(element)
         }
     }
 this.update()
-model.addObserver(this)
 
 }

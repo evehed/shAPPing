@@ -19,8 +19,8 @@ var ShoppingCart = function (model, element, currenUser){
     //var totalPrice = 0
     //console.log(shoppingCart.length)
     //var counter = true;
-    //console.log(shoppingCart.length)
-    
+    console.log(shoppingCart.length)
+    console.log(shoppingCart);
 
     for (var i=0; i < shoppingCart.length; i++){
 
@@ -39,6 +39,7 @@ var ShoppingCart = function (model, element, currenUser){
       for(var z = 0; z<nameSaver.length; z++){
         if (shoppingCart[i].title == nameSaver[z]){
           skipper = true
+          counter = 0;
         }
       }
 
@@ -104,7 +105,7 @@ var ShoppingCart = function (model, element, currenUser){
         amountDiv.className = "col-12"
         var p = document.createElement("p")
         p.className = "m-0"
-        var amount = document.createTextNode("Amount: " + counter  + "Price each: " + shoppingCart[i].price)
+        var amount = document.createTextNode("Amount: " + counter  + " Price each: " + shoppingCart[i].price)
         p.appendChild(amount)
         amountDiv.appendChild(p)
         row.appendChild(amountDiv)

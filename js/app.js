@@ -104,8 +104,8 @@ function start() {
 
 	// Show only login
 
-	scanProduct1.style.display = "none";
-	scanProduct2.style.display = "none";
+	//scanProduct1.style.display = "none";
+	//scanProduct2.style.display = "none";
 
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -261,6 +261,7 @@ function payPage() {
 	loginElement.style.display = "none"
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
+	model.runShoppingCartLoader();
 
 
 }
@@ -290,6 +291,7 @@ function productInfoPage(g) {
 	loginElement.style.display = "none"
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
+	printproductInfo.style.display = "block";
 
 }
 
