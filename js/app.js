@@ -40,8 +40,8 @@ var signUpInfoElement = document.getElementById("signUpInfo")
 
 // Scan product 1 & 2
 //var scanPage = document.getElementById("scanProduct.html")
-var scanProduct1 = document.getElementById("scanProduct1")
-var scanProduct2 = document.getElementById("scanProduct2")
+//var scanProduct1 = document.getElementById("scanProduct1")
+//var scanProduct2 = document.getElementById("scanProduct2")
 
 // Login, Logout, Sign up
 var logoutBtn = document.getElementById("logoutBtn");
@@ -50,6 +50,9 @@ var inputPassword = document.getElementById("inputPassword");
 var loginBtn = document.getElementById("loginBtn");
 var emailSignUp = document.getElementById("inputEmailSignUp")
 var passwordSignup = document.getElementById("inputPasswordSignUp")
+
+//Pay
+var qrCode = document.getElementById("payQR")
 
 
 // Show sign up page
@@ -296,6 +299,7 @@ function payMessage() {
 
 	if (shoppingCart.length > 0) {
 		ons.notification.alert({ message: 'You paid: ' + model.getTotalPrice() + ' kr.', title: 'Congratulation!' })
+		qrCode.style.display = "block";
 	} else {
 		ons.notification.alert({ message: 'Put a product in the cart and come back.', title: 'Shopping cart is empty!' })
 	}

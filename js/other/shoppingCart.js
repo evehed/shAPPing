@@ -101,10 +101,10 @@ var ShoppingCart = function (model, element, currenUser){
 
         // // AMOUNT INSERT
         var amountDiv = document.createElement("div")
-        amountDiv.className = "col-6"
+        amountDiv.className = "col-12"
         var p = document.createElement("p")
         p.className = "m-0"
-        var amount = document.createTextNode("Amount: " + counter + " Price each: " + shoppingCart[i].price)
+        var amount = document.createTextNode("Amount: " + counter  + "Price each: " + shoppingCart[i].price)
         p.appendChild(amount)
         amountDiv.appendChild(p)
         row.appendChild(amountDiv)
