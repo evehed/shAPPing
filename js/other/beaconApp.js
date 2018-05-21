@@ -216,7 +216,7 @@ var BeaconApp = function (model, element){
 
 	app.temp = function(){
 		var productInfo = model.getScannedProduct(537176)
-		console.log(productInfo)
+		//console.log(productInfo)
 
 		app.printPage(productInfo)
 

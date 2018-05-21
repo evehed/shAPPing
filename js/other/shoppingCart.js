@@ -14,23 +14,9 @@ var ShoppingCart = function (model, element, currenUser){
     
 
     var shoppingCart = model.returnShoppingCart(currenUser);
-  
-    //console.log("current user i shoppingcart: "+ currenUser)
-    //var totalPrice = 0
-    //console.log(shoppingCart.length)
-    //var counter = true;
-    console.log(shoppingCart.length)
-    console.log(shoppingCart);
+
 
     for (var i=0; i < shoppingCart.length; i++){
-
-      /*
-      var card = document.createElement("ons-card")
-      card.className = "col-10 mx-auto"
-      var info = document.createElement("div")
-      info.className = "col-12 mx-auto"
-      var row = document.createElement("div")
-      row.className = "row"*/
       for(var k=0; k<shoppingCart.length; k++){
         if(shoppingCart[i].title == shoppingCart[k].title){
           counter = counter + 1;
@@ -63,13 +49,6 @@ var ShoppingCart = function (model, element, currenUser){
         card.appendChild(img)
 
 
-        // // ADD TO TOTAL PRICE
-        // totalPrice += shoppingCart[i].price
-        //info.appendChild(row)
-        //card.appendChild(info)
-      
-        //element.appendChild(card)
-        //console.log(element);
         //  TITLE INSERT
         var titleDiv = document.createElement("div")
         titleDiv.className = "col-6"
@@ -111,8 +90,6 @@ var ShoppingCart = function (model, element, currenUser){
         row.appendChild(amountDiv)
 
         
-
-
         // // ADD TO TOTAL PRICE
         // totalPrice += shoppingCart[i].price
         info.appendChild(row)

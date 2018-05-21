@@ -6,18 +6,18 @@ var PressInfo = function (model, element){
 
 
     this.update = function() {
-        console.log("PressInfo update körs!")
+        //console.log("PressInfo update körs!")
 
         var g = model.getCurrentProductInfo();
         var b = model.getAllGroceries()
         //console.log(b.length)
         // console.log("här är b"+b)
-        console.log(g)
+        //console.log(g)
         if (g !== "") {
             console.log(g)
-            /*while (element.firstChild) {
+            while (element.firstChild) {
                 element.removeChild(element.firstChild);
-            }*/
+            }
             let groceryNode = document.createElement("ons-card");
 
             //var string = "productInfoPage("+g+")";
@@ -60,7 +60,7 @@ var PressInfo = function (model, element){
             groceryNode.appendChild(addButton)
             groceryNode.appendChild(successMessage)
             element.appendChild(groceryNode);
-            console.log(element)
+            //console.log(element)
         }
     }
 this.update()

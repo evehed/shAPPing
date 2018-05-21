@@ -90,12 +90,9 @@ var ShoppingModel = function () {
             .then(function() {
               
               var test = [];
-              
               for(var i = 0; i < shoppingCart.length; i++)
               {
                 if(shoppingCart[i].id == product && noSkip == true){
-                  //test = shoppingCart.splice(shoppingCart[i], 1);
-                  //console.log(shoppingCart)
                   noSkip = false;
                 }
                 else{
