@@ -8,12 +8,10 @@ var config = {
 	messagingSenderId: "987966090005"
 };
 firebase.initializeApp(config);
-//this.database = firebase.firestore();
 
 //We instantiate our model
 this.model = new ShoppingModel();
 var scanElement = document.getElementById("scanProduct.html")
-
 
 // Current user
 var currenUser;
@@ -21,12 +19,9 @@ var currenUser;
 // References
 var searchElement = document.getElementById("search.html")
 var printSearch = document.getElementById("search")
-
-
 var payElement = document.getElementById("pay.html")
 var payProductsElement = document.getElementById("productsContent")
 var payUserElement = document.getElementById("checkoutUser")
-
 var cartElement = document.getElementById("shoppingCart.html")
 var printCart = document.getElementById("shoppingCart")
 var loginElement = document.getElementById("logIn.html")
@@ -37,11 +32,6 @@ var signUpElement = document.getElementById("signUp.html")
 var navBarElement = document.getElementById("navBar.html")
 var loginInfoElement = document.getElementById("loginInfo")
 var signUpInfoElement = document.getElementById("signUpInfo")
-
-// Scan product 1 & 2
-//var scanPage = document.getElementById("scanProduct.html")
-//var scanProduct1 = document.getElementById("scanProduct1")
-//var scanProduct2 = document.getElementById("scanProduct2")
 
 // Login, Logout, Sign up
 var logoutBtn = document.getElementById("logoutBtn");
@@ -98,15 +88,10 @@ function signUpUser() {
 	//console.log("current user setup:" + currenUser)
 }
 
-
 // Runs when app.js start
 function start() {
 
-	// Show only login
-
-	//scanProduct1.style.display = "none";
-	//scanProduct2.style.display = "none";
-
+	// Show login
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
 	productInfoElement.style.display = "none";
@@ -118,10 +103,8 @@ function start() {
 	signUpInfoElement.style.display = "none";
 	loginElement.style.display = "block";
 
-
 	// Go to login
 	login()
-
 }
 
 // Login
@@ -175,7 +158,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		console.log("current user: uid " + currenUser.uid + ' email: ' + currenUser.email)
 		enterApp()
 
-
 	} else {
 		console.log("not logged in");
 	}
@@ -188,18 +170,31 @@ logoutBtn.addEventListener("click", e => {
 	inputPassword.value = ''
 	inputEmailSignUp.value = ''
 	inputPasswordSignUp.value = ''
+	qrCode.style.display = "none";
 	loginPage()
 })
-
 
 // Enter app when user login
 function enterApp() {
 	loginElement.style.display = "none"
 	navBarElement.style.display = "flex";
 	model.setCurrentUser(currenUser);
-
 	searchPage()
 }
+
+// QR-code and pay message
+function payMessage() {
+	var shoppingCart = model.returnShoppingCart()
+
+	if (shoppingCart.length > 0) {
+		ons.notification.alert({ message: 'You paid: ' + model.getTotalPrice() + ' kr.', title: 'Congratulation!' })
+		qrCode.style.display = "block";
+	} else {
+		ons.notification.alert({ message: 'Put a product in the cart and come back.', title: 'Shopping cart is empty!' })
+	}
+}
+
+// App pages
 
 function loginPage() {
 	searchElement.style.display = "none";
@@ -211,18 +206,13 @@ function loginPage() {
 	productInfoElement.style.display = "none";
 	printproductInfo.style.display = "none";
 	signUpElement.style.display = "none";
-
 }
 
-
-
 function searchPage() {
-
 	var search = new Search(model, printSearch)
 	var pay = new Pay(model, payProductsElement, payUserElement, currentUser)
 	var shoppingCart = new ShoppingCart(model, printCart, currenUser)
 	//console.log("nu körs search")
-
 
 	searchElement.style.display = "block";
 	scanElement.style.display = "none";
@@ -232,11 +222,9 @@ function searchPage() {
 	loginElement.style.display = "none"
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
-
-
 }
-function scanPage() {
 
+function scanPage() {
 	searchElement.style.display = "none";
 	scanElement.style.display = "block";
 	payElement.style.display = "none";
@@ -247,12 +235,9 @@ function scanPage() {
 	navBarElement.style.display = "block";
 	var beaconApp = new BeaconApp(model, scanElement)
 	beaconApp.startScanning();
-
-
 }
 
 function payPage() {
-
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "block";
@@ -262,11 +247,9 @@ function payPage() {
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
 	model.runShoppingCartLoader();
-
-
 }
-function cartPage() {
 
+function cartPage() {
 	searchElement.style.display = "none";
 	scanElement.style.display = "none";
 	payElement.style.display = "none";
@@ -276,10 +259,8 @@ function cartPage() {
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
 	model.runShoppingCartLoader();
-
-
-
 }
+
 function productInfoPage(g) {
 	model.setCurrentProduct(g);
 	var pressInfo = new PressInfo(model, printproductInfo)
@@ -292,21 +273,6 @@ function productInfoPage(g) {
 	signUpElement.style.display = "none"
 	navBarElement.style.display = "block";
 	printproductInfo.style.display = "block";
-
 }
 
-
-function payMessage() {
-	var shoppingCart = model.returnShoppingCart()
-
-	if (shoppingCart.length > 0) {
-		ons.notification.alert({ message: 'You paid: ' + model.getTotalPrice() + ' kr.', title: 'Congratulation!' })
-		qrCode.style.display = "block";
-	} else {
-		ons.notification.alert({ message: 'Put a product in the cart and come back.', title: 'Shopping cart is empty!' })
-	}
-}
-
-
-
-	start()
+start()
